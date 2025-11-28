@@ -1,0 +1,22 @@
+@use "sass:map";
+@use "sass:list";
+@use "../01_utilities/index.scss" as utilidades;
+
+:root {
+    @each $key, $value in utilidades.$colores {
+        @for $i from 1 through list.length($value) {
+            --mlt-sys-colores-#{$key}-#{$i}: #{list.nth($value, $i)};
+        }
+    }
+}
+
+@each $key, $value in utilidades.$colores {
+    @for $i from 1 through list.length($value) {
+        .g--colores-#{$key}-#{$i} {
+            color: var(--mlt-sys-colores-#{$key}-#{$i});
+        }
+        .g--bg-colores-#{$key}-#{$i} {
+            background-color: var(--mlt-sys-colores-#{$key}-#{$i});
+        }
+    }
+}

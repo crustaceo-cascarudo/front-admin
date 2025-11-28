@@ -1,0 +1,24 @@
+$paddings:(0px, 4px, 6x, 8px, 10px, 12px, 16px, 20px, 24px, 32px, 40px, 48px, 64px, 80px, 96px, 128px, 160px, 192px, 224px, 256px, 320px, 480px, 640px);
+$font-sizes:(12px, 14px, 16px, 18px, 20px, 24px, 30px, 36px, 48px, 64px);
+$border-radiuss:(0px, 2px, 4px, 6px, 8px, 12px, 16px);
+
+$font-families:(
+    "default":"Open Sans",
+);
+
+$box-shadows:(
+    0  1px  3px  rgb(0 0 0 / 20%),
+    0  4px  6px  rgb(0 0 0 / 20%),
+    0  5px 15px  rgb(0 0 0 / 20%),
+    0 10px 24px  rgb(0 0 0 / 20%),
+    0 15px 35px  rgb(0 0 0 / 20%)
+);
+
+$colores: (
+    'principal': (#011019, #052F4D, #0B4D83, #1363B4, #1979E6, #4B8EEC, #80ADF4, #B2CAFA, #E6EDFE),
+    'alternativo': (#190801, #4D1D05, #83370B, #B45613, #E67519, #EC9C4B, #F4BE80, #FADCB2, #FEF5E6),
+    'rojo': (#190501, #4D0D05, #83150B, #B41813, #E61919, #EC534B, #F48A80, #FABCB2, #FEEAE6),
+    'gris': (#1D2830, #323E49, #485461, #5C6775, #717D8E, #8A93A3, #A1A9BA, #B6BDCD, #CFD4E2),
+    'blanco': (#EBEBEB, #EDEDED, #F0F0F0, #F2F2F2, #F5F5F5, #F7F7F7, #FAFAFA, #FCFCFC, #FFFFFF),
+    'amarillo': (#6D5303, #9A7809, #C69C10, #E9BC1C, #ECC94B, #F2D978, #F7E7A6, #FCF4CF, #FFFFFF)
+);

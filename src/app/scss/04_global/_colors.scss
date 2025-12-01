@@ -1,0 +1,44 @@
+@use "sass:map";
+@use "sass:list";
+@use "../01_utilities/index.scss" as utilidades;
+
+:root {
+    @each $key, $value in utilidades.$colors {
+        --mlt-sys-colors-#{$key}: #{list.nth($value, 6)};
+
+        @for $i from 2 through list.length($value) {
+            --mlt-sys-colors-#{$key}-#{$i}: #{list.nth($value, $i)};
+        }
+    }
+}
+
+@each $key, $value in utilidades.$colors {
+    .g--colors-#{$key} {
+        color: var(--mlt-sys-colors-#{$key});
+    }
+    .g--bg-colors-#{$key} {
+        background-color: var(--mlt-sys-colors-#{$key});
+    }
+
+    @for $i from 2 through list.length($value) {
+        .g--colors-#{$key}-#{$i} {
+            color: var(--mlt-sys-colors-#{$key}-#{$i});
+        }
+        .g--bg-colors-#{$key}-#{$i} {
+            background-color: var(--mlt-sys-colors-#{$key}-#{$i});
+        }
+    }
+}
+
+$base-colors: (
+    'primary': --mlt-sys-colors-blue,
+    'secondary': --mlt-sys-colors-teal,
+    'success': --mlt-sys-colors--green,
+    'danger': --mlt-sys-colors-red,
+    'warning-light': #FFC107,
+    'warning-dark': --mlt-sys-colors-yellow,
+    'info': --mlt-sys-colors-cyan,
+    'light': #F2F0FE,
+    'dark': --mlt-sys-colors-gray-8,
+);
+

@@ -7,7 +7,7 @@
         --mlt-sys-colors-#{$key}: #{list.nth($value, 6)};
 
         @for $i from 2 through list.length($value) {
-            --mlt-sys-colors-#{$key}-#{$i}: #{list.nth($value, $i)};
+            --mlt-sys-colors-#{$key}-#{($i)-1}: #{list.nth($value, $i)};
         }
     }
 }
@@ -21,10 +21,10 @@
     }
 
     @for $i from 2 through list.length($value) {
-        .g--colors-#{$key}-#{$i} {
+        .g--colors-#{$key}-#{($i)-1} {
             color: var(--mlt-sys-colors-#{$key}-#{$i});
         }
-        .g--bg-colors-#{$key}-#{$i} {
+        .g--bg-colors-#{$key}-#{($i)-1} {
             background-color: var(--mlt-sys-colors-#{$key}-#{$i});
         }
     }
@@ -32,7 +32,7 @@
 
 $base-colors: (
     'primary': --mlt-sys-colors-blue,
-    'secondary': --mlt-sys-colors-teal,
+    'secondary': --mlt-sys-colors-cyan-3,
     'success': --mlt-sys-colors--green,
     'danger': --mlt-sys-colors-red,
     'warning-light': #FFC107,
@@ -42,3 +42,13 @@ $base-colors: (
     'dark': --mlt-sys-colors-gray-8,
 );
 
+@each $key, $value in $base-colors {
+    .g--base-colors-#{$key} {
+        color: var($value);
+    }
+
+    .g--bg-base-colors-#{$key} {
+        background-color: var($value);
+    }
+
+};

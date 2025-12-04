@@ -1,1 +1,13 @@
-<p>p-categories works!</p>
+<div>
+    <button>Agregar Categoría</button>
+
+    <div>
+        @for (category of categories; track category.id) {
+            <c-category 
+            [category]="category"
+            (onEdit)="handleEdit($event)"
+            (onDelete)="handleDelete($event)"
+            ></c-category>
+        }
+    </div>
+</div>

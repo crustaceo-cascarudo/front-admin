@@ -1,31 +1,31 @@
-.navbar{
+.myNavbar{
 
-    $navbar-height: 75px;
-    --navbar-bg-color: var(--mlt-sys-colors-blue);
-    --navbar-shadow: var(--mlt-sys-box-shadow-4);
-    --navbar-padding: var(--mlt-sys-padding-14);
-    --navbar-round-edge: 120px;
-    --navbar-gap: 30px;
-    --navbar-text-color: aliceblue;
-    --navbar-text-size: 20px;
+    $myNavbar-height: 75px;
+    --myNavbar-bg-color: var(--mlt-sys-colors-blue);
+    --myNavbar-shadow: var(--mlt-sys-box-shadow-4);
+    --myNavbar-padding: var(--mlt-sys-padding-10);
+    --myNavbar-round-edge: 120px;
+    --myNavbar-gap: 30px;
+    --myNavbar-text-color: aliceblue;
+    --myNavbar-text-size: 20px;
     
     display: flex;
     align-items: center;
-    height: $navbar-height;
-    background-color: var(--navbar-bg-color);
-    box-shadow: var(--navbar-shadow);
-    border-bottom-right-radius: var(--nav-bar-round-edge);
+    height: $myNavbar-height;
+    background-color: var(--myNavbar-bg-color);
+    box-shadow: var(--myNavbar-shadow);
+    border-bottom-right-radius: var(--myNav-bar-round-edge);
+    padding: var(--myNavbar-padding);
 
     &__container{
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        padding: var(--navbar-padding);
     }
 
     &__image{
-        height: #{$navbar-height - 15px};
+        height: #{$myNavbar-height - 15px};
         width: auto;
     }
 
@@ -34,14 +34,14 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        color: var(--navbar-text-color);
+        color: var(--myNavbar-text-color);
     }
 
     &__list{
         display: flex;
         flex-direction: row;
         align-items: center;
-        font-size: var(--navbar-text-size);
+        font-size: var(--myNavbar-text-size);
     }
 
     &__list > li {

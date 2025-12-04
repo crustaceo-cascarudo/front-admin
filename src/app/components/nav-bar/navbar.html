@@ -1,0 +1,21 @@
+<nav class="navbar">
+    <div class="navbar__container">
+        <img class="navbar__image" src="/images/fierabrasLogoImage64x64.png" alt="Logo">
+        <div class="navbar__menu">
+            <!-- toDo, comprobar si se ha iniciado sesion y poer cerrar sesion-->
+            @if (true) {
+                <ul class="navbar__list">
+                    <li>
+                        <a routerLink="/categories">Categorias</a>
+                    </li>
+                    <li>
+                        <a routerLink="/products">Productos</a>
+                    </li>
+                    <li>
+                        <c-button>Cerrar Sesion</c-button>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</nav>

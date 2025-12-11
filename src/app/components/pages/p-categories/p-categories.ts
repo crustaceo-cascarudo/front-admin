@@ -16,21 +16,22 @@ export class PCategories {
   private subscription = new Subscription();
 
   ngOnInit(): void {
-    this.loadCategories();
-  }
-
-  loadCategories(): void {
-    this.subscription.add(
-      this.service.getAllCategories().subscribe((data) => {
+    console.log('Cargando categorías...');
+    this.service.getAllCategories().subscribe({
+      next: (data) => {
+        console.log('Datos recibidos:', data);
         this.categories = data;
-      })
-    );
+      },
+      error: (error) => {
+        console.error('Error al cargar categorías:', error);
+      }
+    });
   }
 
   handleEdit(category: Categories): void {
   }
 
-  handleDelete(id: string): void {
+  handleDelete(id: number): void {
     this.subscription.add(
       this.service.deleteCategory(id).subscribe(() => {
         this.categories = this.categories.filter(cat => cat.id !== id);

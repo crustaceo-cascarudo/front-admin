@@ -10,7 +10,7 @@ import { Categories } from '../../../model/categories';
 export class CCategory {
   @Input() category!: Categories;
   @Output() onEdit = new EventEmitter<Categories>();
-  @Output() onDelete = new EventEmitter<string>();
+  @Output() onDelete = new EventEmitter<number>();
 
   edit(): void {
     this.onEdit.emit(this.category);

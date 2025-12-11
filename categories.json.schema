@@ -1,0 +1,44 @@
+{
+  "categories": [
+  {
+    "id": 1,
+    "name": "Electrónica",
+    "description": "Dispositivos electrónicos y gadgets"
+  },
+  {
+    "id": 2,
+    "name": "Ropa",
+    "description": "Prendas de vestir para todas las edades"
+  },
+  {
+    "id": 3,
+    "name": "Hogar",
+    "description": "Artículos para el hogar y decoración"
+  },
+  {
+    "id": 4,
+    "name": "Deportes",
+    "description": "Equipamiento y ropa deportiva"
+  },
+  {
+    "id": 5,
+    "name": "Libros",
+    "description": "Libros de diferentes géneros"
+  },
+  {
+    "id": 6,
+    "name": "Juguetes",
+    "description": "Juguetes y juegos educativos"
+  },
+  {
+    "id": 7,
+    "name": "Belleza",
+    "description": "Productos de cuidado personal"
+  },
+  {
+    "id": 8,
+    "name": "Alimentos",
+    "description": "Productos alimenticios gourmet"
+  }
+]
+}

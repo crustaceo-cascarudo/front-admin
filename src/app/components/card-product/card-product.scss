@@ -1,0 +1,137 @@
+$container-max-width: 1140px;
+$container-padding-md: 1.5rem;
+$container-padding-lg: 2rem;
+$container-border: 1px solid rgba(0, 0, 0, 0.06);
+$container-radius: 0.5rem;
+$container-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+$container-shadow-elevated: 0 6px 20px rgba(0, 0, 0, 0.12);
+$container-gap: 1rem;
+$transition: 180ms ease-in-out;
+
+
+.c-articulo {
+  --c-articulo-font-size-default: var(--mlt-sys-font-size-3);
+  --c-articulo-font-size-grande: var(--mlt-sys-font-size-4);
+  --c-articulo-font-size-precios: var(--mlt-sys-font-size-4);
+
+  --c-articulo-font-family-default: var(--mlt-sys-font-family-default);
+  --c-articulo-font-family-firmas: var(--mlt-sys-font-family-firmas);
+  --c-articulo-font-family-precios: var(--mlt-sys-font-family-titulo);
+
+  --c-articulo-padding: var(--mlt-sys-padding-8);
+  --c-articulo-box-shadow: var(--mlt-sys-box-shadow-5);
+  --c-articulo-margin: 10px;
+  --c-articulo-content-margin: 5px;
+
+  --c-articulo-background-color: var(--mlt-sys-colores-principal-9);
+
+  box-sizing: border-box;
+  width: 220pt;
+  max-width: $container-max-width;
+  padding: var(--c-articulo-padding);
+  margin: var(--c-articulo-margin);
+  background: var(--c-articulo-background-color);
+  border: $container-border;
+  border-radius: $container-radius;
+  box-shadow: var(--c-articulo-box-shadow);
+  color: inherit;
+  display: block;
+  transition: box-shadow $transition, transform $transition;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &__img {
+    width: 100%;
+    height: auto;
+  }
+
+  &__nombre {
+    font-family: var(--c-articulo-font-family-default);
+    font-size: var(--c-articulo-font-size-grande);
+    color: black;
+    margin-bottom: var(--c-articulo-content-margin);
+    margin-top: var(--c-articulo-content-margin);
+  }
+
+  &__precios {
+    display: block;
+    margin-bottom: var(--c-articulo-content-margin);
+    margin-top: var(--c-articulo-content-margin);
+  }
+
+  &__precio {
+    font-family: var(--c-articulo-font-family-precios);
+
+    &--actual {
+      font-weight: 600;
+      font-size: var(--c-articulo-font-size-grande);
+      color: red;
+    }
+
+    &--anterior {
+      font-size: var(--c-articulo-font-size-default);
+      color: gray;
+      text-decoration: line-through;
+    }
+  }
+
+  &__valoraciones {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: var(--c-articulo-content-margin);
+    margin-top: var(--c-articulo-content-margin);
+  }
+
+  &__puntuacion {
+    font-size: var(--c-articulo-font-size-grande);
+    color: #5a5a5a;
+    font-weight: 600;
+  }
+
+  &__star {
+    font-size: var(--c-articulo-font-size-default);
+  }
+
+  &__opiniones {
+    font-size: var(--c-articulo-font-size-default);
+    color: #5a5a5a;
+    font-weight: 400;
+  }
+
+  &__costes {
+    font-size: --c-articulo-font-size-default;
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4pt;
+    margin-bottom: var(--c-articulo-content-margin);
+    margin-top: var(--c-articulo-content-margin);
+  }
+
+  &__entrega {
+    font-size: var(--c-articulo-font-size-default);
+    font-weight: 500;
+
+    &--envio-gratis {
+      font-weight: 700;
+      color: green;
+    }
+  }
+
+  &__entrega span {
+    color: red;
+  }
+
+  &__otras-opciones {
+    font-size: var(--c-articulo-font-size-grande);
+    color: #777;
+    font-family: var(--c-articulo-font-family-default);
+    margin-bottom: var(--c-articulo-content-margin);
+    margin-top: var(--c-articulo-content-margin);
+  }
+}

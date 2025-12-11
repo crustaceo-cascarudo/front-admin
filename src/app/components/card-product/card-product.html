@@ -1,0 +1,34 @@
+<div class="c-articulo">
+    <img class="c-articulo__img" src="{{urlImagen}}">
+    <h3 class="c-articulo__nombre">{{nombre}}</h3>
+    <p class="c-articulo__precios">
+        <span class="c-articulo__precio--actual">{{precioActual| currency}}</span>
+        &nbsp;
+        <span class="c-articulo__precio--anterior">{{precioAnterior| currency}}</span>
+    </p>
+    <p class="c-articulo__valoraciones">
+        <span class="c-articulo__puntuacion">{{valoracion}}/5</span>
+        <span class="c-articulo__star">⭐</span>
+        <span class="c-articulo__opiniones">{{numeroOpiniones}} opiniones</span>
+    </p>
+    <p class="c-articulo__costes">
+        🚚
+        @if (precioEnvio==0) {
+            <span class="c-articulo__entrega c-articulo__entrega--envio-gratis">Entrega Gratis</span>
+        }@else {
+            <span class="c-articulo__entrega">{{precioEnvio| currency}}</span>   
+        }
+        @if (isTomorrow){
+            <span class="c-articulo__entrega c-articulo__entrega--envio-gratis">Recibelo Mañana</span>
+        }@else{
+            <div class="c-articulo__entrega">Recibelo el {{fechaEntrega| date: 'fullDate'}}</div>
+        }
+
+       <!-- <div class="c-articulo__entrega">🚚 
+            <span>{{precioEnvio | currency}}</span>
+            {{fechaEntrega | date: 'shortDate'}}
+        </div>
+        -->
+    </p>
+    <p class="c-articulo__opiniones g--font-family-firmas">Otras opciones disponibles</p>
+</div>

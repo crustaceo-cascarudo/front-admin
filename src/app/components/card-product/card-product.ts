@@ -2,12 +2,12 @@ import { Component, HostBinding, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'c-articulo',
+  selector: 'card-product',
   imports: [CommonModule],
   templateUrl: './card-product.html',
   styleUrl: './card-product.scss',
 })
-export class CArticulo {
+export class CardProduct {
   @Input() urlImagen: String = "";
   @Input() nombre: String = "";
   @Input() precioActual: number = 0;

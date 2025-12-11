@@ -1,1 +1,6 @@
-<p>p-categories works!</p>
+<h3>Articulos | Total:{{articulos.length}}</h3>
+<div class="row row-cols-6 g-3">
+    @for (articulo of articulos; track articulo.id) {
+        <card-product [articulo]="articulo"></card-product>
+    }
+</div>

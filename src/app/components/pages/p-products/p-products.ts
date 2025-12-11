@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Product } from '../../../models/product';
 import { CardProduct } from "../../card-product/card-product";
 import { HttpClientService } from '../../../services/http-client-service';
+import { Page } from '../../../models/page';
 
 @Component({
   selector: 'p-products',
@@ -22,7 +23,7 @@ export class PProducts {
 
   getData(){
     this.http.getAll(this.url).subscribe({
-      next: (datos) => this.products = datos as unknown[] as Product[],
+      next: (datos) => this.products = (datos as unknown as Page<Product>).data,
       error: (error) => console.log('ERROR ' + error.status),
     })
   }

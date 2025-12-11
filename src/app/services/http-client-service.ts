@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product';
+import { Page } from '../models/page';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +12,8 @@ export class HttpClientService {
 
   baseUrl = 'http://localhost:8080';
 
-  getAll(url: string): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl+url)
+  getAll(url: string): Observable<Page<any>> {
+    return this.http.get<Page<any>>(this.baseUrl+url)
   }
 
   get(id: number, url: string): Observable<any> {

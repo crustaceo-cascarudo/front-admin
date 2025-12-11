@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CCategory } from '../../ui/c-category/c-category';
-import { Categories } from '../../../model/categories';
-import { CategoryService } from '../../../service/category-service';
+import { Category } from '../../../models/category';
+import { CategoryService } from '../../../services/category-service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './p-categories.scss',
 })
 export class PCategories {
-  categories: Categories[] = [];
+  categories: Category[] = [];
   service = inject(CategoryService);
   private subscription = new Subscription();
 
@@ -28,7 +28,7 @@ export class PCategories {
     });
   }
 
-  handleEdit(category: Categories): void {
+  handleEdit(category: Category): void {
   }
 
   handleDelete(id: number): void {

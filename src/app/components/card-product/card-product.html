@@ -1,34 +1,22 @@
-<div class="c-articulo">
-    <img class="c-articulo__img" src="{{urlImagen}}">
-    <h3 class="c-articulo__nombre">{{nombre}}</h3>
-    <p class="c-articulo__precios">
-        <span class="c-articulo__precio--actual">{{precioActual| currency}}</span>
+<div class="card-product">
+    <img class="card-product__img" src="{{product.image}}">
+    <h3 class="card-product__name">{{product.name}}</h3>
+    <p class="card-product__prices">
+        <span class="card-product__price--final">{{product.finalPrice | currency}}</span>
         &nbsp;
-        <span class="c-articulo__precio--anterior">{{precioAnterior| currency}}</span>
-    </p>
-    <p class="c-articulo__valoraciones">
-        <span class="c-articulo__puntuacion">{{valoracion}}/5</span>
-        <span class="c-articulo__star">⭐</span>
-        <span class="c-articulo__opiniones">{{numeroOpiniones}} opiniones</span>
-    </p>
-    <p class="c-articulo__costes">
-        🚚
-        @if (precioEnvio==0) {
-            <span class="c-articulo__entrega c-articulo__entrega--envio-gratis">Entrega Gratis</span>
-        }@else {
-            <span class="c-articulo__entrega">{{precioEnvio| currency}}</span>   
+        @if(product.discountPercentage != 0){
+            <span class="card-product__price--base">{{product.basePrice | currency}}</span>
+            <span class="card-product__price--dicount">{{product.discountPercentage | percent}}</span>
         }
-        @if (isTomorrow){
-            <span class="c-articulo__entrega c-articulo__entrega--envio-gratis">Recibelo Mañana</span>
-        }@else{
-            <div class="c-articulo__entrega">Recibelo el {{fechaEntrega| date: 'fullDate'}}</div>
-        }
-
-       <!-- <div class="c-articulo__entrega">🚚 
-            <span>{{precioEnvio | currency}}</span>
-            {{fechaEntrega | date: 'shortDate'}}
-        </div>
-        -->
     </p>
-    <p class="c-articulo__opiniones g--font-family-firmas">Otras opciones disponibles</p>
+    <p class="card-product__valoraciones">
+        @for (i of product.ingredients; track i.id) {
+            <span class="card-product__opiniones">{{i.name}}</span>
+        }
+    </p>
+    <p class="card-product__valoraciones">
+        @for (c of product.categories; track c.id) {
+            <span class="card-product__opiniones">{{c.name}}</span>
+        }
+    </p>
 </div>

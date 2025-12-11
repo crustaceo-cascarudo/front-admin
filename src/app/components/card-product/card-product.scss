@@ -9,31 +9,31 @@ $container-gap: 1rem;
 $transition: 180ms ease-in-out;
 
 
-.c-articulo {
-  --c-articulo-font-size-default: var(--mlt-sys-font-size-3);
-  --c-articulo-font-size-grande: var(--mlt-sys-font-size-4);
-  --c-articulo-font-size-precios: var(--mlt-sys-font-size-4);
+.card-product {
+  --card-product-font-size-default: var(--mlt-sys-font-size-3);
+  --card-product-font-size-grande: var(--mlt-sys-font-size-4);
+  --card-product-font-size-prices: var(--mlt-sys-font-size-4);
 
-  --c-articulo-font-family-default: var(--mlt-sys-font-family-default);
-  --c-articulo-font-family-firmas: var(--mlt-sys-font-family-firmas);
-  --c-articulo-font-family-precios: var(--mlt-sys-font-family-titulo);
+  --card-product-font-family-default: var(--mlt-sys-font-family-default);
+  --card-product-font-family-firmas: var(--mlt-sys-font-family-firmas);
+  --card-product-font-family-prices: var(--mlt-sys-font-family-titulo);
 
-  --c-articulo-padding: var(--mlt-sys-padding-8);
-  --c-articulo-box-shadow: var(--mlt-sys-box-shadow-5);
-  --c-articulo-margin: 10px;
-  --c-articulo-content-margin: 5px;
+  --card-product-padding: var(--mlt-sys-padding-8);
+  --card-product-box-shadow: var(--mlt-sys-box-shadow-5);
+  --card-product-margin: 10px;
+  --card-product-content-margin: 5px;
 
-  --c-articulo-background-color: var(--mlt-sys-colores-principal-9);
+  --card-product-background-color: var(--mlt-sys-colores-principal-9);
 
   box-sizing: border-box;
   width: 220pt;
   max-width: $container-max-width;
-  padding: var(--c-articulo-padding);
-  margin: var(--c-articulo-margin);
-  background: var(--c-articulo-background-color);
+  padding: var(--card-product-padding);
+  margin: var(--card-product-margin);
+  background: var(--card-product-background-color);
   border: $container-border;
   border-radius: $container-radius;
-  box-shadow: var(--c-articulo-box-shadow);
+  box-shadow: var(--card-product-box-shadow);
   color: inherit;
   display: block;
   transition: box-shadow $transition, transform $transition;
@@ -45,31 +45,31 @@ $transition: 180ms ease-in-out;
     height: auto;
   }
 
-  &__nombre {
-    font-family: var(--c-articulo-font-family-default);
-    font-size: var(--c-articulo-font-size-grande);
+  &__name {
+    font-family: var(--card-product-font-family-default);
+    font-size: var(--card-product-font-size-grande);
     color: black;
-    margin-bottom: var(--c-articulo-content-margin);
-    margin-top: var(--c-articulo-content-margin);
+    margin-bottom: var(--card-product-content-margin);
+    margin-top: var(--card-product-content-margin);
   }
 
-  &__precios {
+  &__prices {
     display: block;
-    margin-bottom: var(--c-articulo-content-margin);
-    margin-top: var(--c-articulo-content-margin);
+    margin-bottom: var(--card-product-content-margin);
+    margin-top: var(--card-product-content-margin);
   }
 
-  &__precio {
-    font-family: var(--c-articulo-font-family-precios);
+  &__price {
+    font-family: var(--card-product-font-family-prices);
 
-    &--actual {
+    &--final {
       font-weight: 600;
-      font-size: var(--c-articulo-font-size-grande);
+      font-size: var(--card-product-font-size-grande);
       color: red;
     }
 
     &--anterior {
-      font-size: var(--c-articulo-font-size-default);
+      font-size: var(--card-product-font-size-default);
       color: gray;
       text-decoration: line-through;
     }
@@ -80,28 +80,28 @@ $transition: 180ms ease-in-out;
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: var(--c-articulo-content-margin);
-    margin-top: var(--c-articulo-content-margin);
+    margin-bottom: var(--card-product-content-margin);
+    margin-top: var(--card-product-content-margin);
   }
 
   &__puntuacion {
-    font-size: var(--c-articulo-font-size-grande);
+    font-size: var(--card-product-font-size-grande);
     color: #5a5a5a;
     font-weight: 600;
   }
 
   &__star {
-    font-size: var(--c-articulo-font-size-default);
+    font-size: var(--card-product-font-size-default);
   }
 
   &__opiniones {
-    font-size: var(--c-articulo-font-size-default);
+    font-size: var(--card-product-font-size-default);
     color: #5a5a5a;
     font-weight: 400;
   }
 
   &__costes {
-    font-size: --c-articulo-font-size-default;
+    font-size: --card-product-font-size-default;
     width: 100%;
     flex-direction: row;
     display: flex;
@@ -109,12 +109,12 @@ $transition: 180ms ease-in-out;
     flex-wrap: wrap;
     align-items: center;
     gap: 4pt;
-    margin-bottom: var(--c-articulo-content-margin);
-    margin-top: var(--c-articulo-content-margin);
+    margin-bottom: var(--card-product-content-margin);
+    margin-top: var(--card-product-content-margin);
   }
 
   &__entrega {
-    font-size: var(--c-articulo-font-size-default);
+    font-size: var(--card-product-font-size-default);
     font-weight: 500;
 
     &--envio-gratis {
@@ -128,10 +128,10 @@ $transition: 180ms ease-in-out;
   }
 
   &__otras-opciones {
-    font-size: var(--c-articulo-font-size-grande);
+    font-size: var(--card-product-font-size-grande);
     color: #777;
-    font-family: var(--c-articulo-font-family-default);
-    margin-bottom: var(--c-articulo-content-margin);
-    margin-top: var(--c-articulo-content-margin);
+    font-family: var(--card-product-font-family-default);
+    margin-bottom: var(--card-product-content-margin);
+    margin-top: var(--card-product-content-margin);
   }
 }

@@ -1,1 +1,6 @@
-<p>p-products works!</p>
+<h3>Articulos | Total:{{products.length}}</h3>
+<div class="row row-cols-1 row-cols-md-5 g-3">
+    @for(p of products; track p.id){
+        <card-product [product]="p"></card-product>
+    }
+</div>

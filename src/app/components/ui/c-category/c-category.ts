@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Categories } from '../../../model/categories';
+import { Category } from '../../../models/category';
 
 @Component({
   selector: 'c-category',
@@ -8,8 +8,8 @@ import { Categories } from '../../../model/categories';
   styleUrl: './c-category.scss',
 })
 export class CCategory {
-  @Input() category!: Categories;
-  @Output() onEdit = new EventEmitter<Categories>();
+  @Input() category!: Category;
+  @Output() onEdit = new EventEmitter<Category>();
   @Output() onDelete = new EventEmitter<number>();
 
   edit(): void {

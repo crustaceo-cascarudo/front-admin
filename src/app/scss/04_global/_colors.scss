@@ -1,8 +1,10 @@
 @use "sass:map";
 @use "sass:list";
+@use "sass:meta";
 @use "../01_utilities/index.scss" as utilidades;
 
 :root {
+
     @each $key, $value in utilidades.$colors {
         --mlt-sys-colors-#{$key}: #{list.nth($value, 6)};
 
@@ -31,24 +33,30 @@
 }
 
 $base-colors: (
-    'primary': --mlt-sys-colors-blue,
-    'secondary': --mlt-sys-colors-cyan-3,
-    'success': --mlt-sys-colors--green,
-    'danger': --mlt-sys-colors-red,
+    'primary': var(--mlt-sys-colors-blue),
+    'secondary': var(--mlt-sys-colors-cyan-3),
+    'success': var(--mlt-sys-colors--green),
+    'danger': var(--mlt-sys-colors-red),
     'warning-light': #FFC107,
-    'warning-dark': --mlt-sys-colors-yellow,
-    'info': --mlt-sys-colors-cyan,
+    'warning-dark': var(--mlt-sys-colors-yellow),
+    'info': var(--mlt-sys-colors-cyan),
     'light': #F2F0FE,
-    'dark': --mlt-sys-colors-gray-8,
+    'dark': var(--mlt-sys-colors-gray-8),
 );
 
+:root{
+    @each $key, $value in $base-colors {
+        --mlt-sys-colors-#{$key}: #{$value};
+    }
+}
+
 @each $key, $value in $base-colors {
-    .g--base-colors-#{$key} {
-        color: var($value);
+    .g--colors-#{$key} {
+        color: #{$value};
     }
 
-    .g--bg-base-colors-#{$key} {
-        background-color: var($value);
+    .g--bg-colors-#{$key} {
+        background-color: #{$value};
     }
 
 };

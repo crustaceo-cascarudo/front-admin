@@ -1,6 +1,10 @@
-<h3>Articulos | Total:{{products.length}}</h3>
-<div class="row row-cols-1 row-cols-md-5 g-3">
-    @for(p of products; track p.id){
-        <card-product [product]="p"></card-product>
-    }
+<div class="w-100 h-100 p-5 d-flex flex-column justify-content-start g--bg-colors-dark">
+    <h3 class="mb-3 g--colors-light">Articulos | Total:{{products.length}}</h3>
+    <div class="d-flex row row-cols-auto g-3 justify-content-between align-content-center">
+        @for(p of products; track p.id){
+        <div class="d-flex justify-content-center">
+            <card-product [product]="p"></card-product>
+        </div>
+        }
+    </div>
 </div>

@@ -1,22 +1,26 @@
 <div class="card-product">
-    <img class="card-product__img" src="{{product.image}}">
-    <h3 class="card-product__name">{{product.name}}</h3>
-    <p class="card-product__prices">
-        <span class="card-product__price--final">{{product.finalPrice | currency}}</span>
-        &nbsp;
-        @if(product.discountPercentage != 0){
-            <span class="card-product__price--base">{{product.basePrice | currency}}</span>
-            <span class="card-product__price--dicount">{{product.discountPercentage | percent}}</span>
-        }
-    </p>
-    <p class="card-product__valoraciones">
+    <div class="d-flex flex-row justify-content-between">
+        <div>
+            <h3 class="card-product__name">{{product.name}}</h3>
+            <p class="card-product__prices">
+                <span class="card-product__price--final">{{product.finalPrice | currency}}</span>
+                @if(product.discountPercentage != 0){
+                    <span class="card-product__price--base">{{product.basePrice | currency}}</span>
+                    <span class="card-product__price--discount">{{(product.discountPercentage/100) | percent}}</span>
+                }
+            </p>
+        </div>
+        <img class="card-product__img" src="{{product.image}}">
+    </div>
+    
+    <p class="card-product__ingredients">
         @for (i of product.ingredients; track i.id) {
-            <span class="card-product__opiniones">{{i.name}}</span>
+            <span class="card-product__ingredient">{{i.name}}</span>
         }
     </p>
-    <p class="card-product__valoraciones">
+    <p class="card-product__categories">
         @for (c of product.categories; track c.id) {
-            <span class="card-product__opiniones">{{c.name}}</span>
+            <span class="card-product__category">{{c.name}}</span>
         }
     </p>
 </div>

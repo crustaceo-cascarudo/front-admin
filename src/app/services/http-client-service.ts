@@ -10,27 +10,31 @@ import { Page } from '../models/page';
 export class HttpClientService {
   constructor(private http: HttpClient) { }
 
-  baseUrl = 'http://localhost:8080';
+  baseUrl = 'http://localhost:8080/api';
 
   getAll(url: string): Observable<Page<any>> {
     return this.http.get<Page<any>>(this.baseUrl+url)
   }
 
-  get(id: number, url: string): Observable<any> {
+  get(url: string, id: number): Observable<any> {
     return this.http.get<any>(this.baseUrl + url + "/" + id);
   }
 
-  
+  findByName(url: string, name: string) {
+    return this.http.get<any[]>(this.baseUrl +"/search" + "?name=" + name);
+  }
+
+  getByCategoria(categoria: string) {
+    return this.http.get<Product[]>(this.baseUrl + "?categoria=" + categoria);
+  }
+
 
 
 
   getByPrecio(precio: number) {
     return this.http.get<Product[]>(this.baseUrl + "/?precio_gte=" + precio);
   }
-  getByCategoria(categoria: string) {
-    console.log(this.baseUrl + "?categoria=" + categoria);
-    return this.http.get<Product[]>(this.baseUrl + "?categoria=" + categoria);
-  }
+  
 
   postArticulo(articulo: Product) {
     return this.http.post<Product>(this.baseUrl, articulo);

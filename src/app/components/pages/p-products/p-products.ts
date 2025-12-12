@@ -11,7 +11,7 @@ import { Page } from '../../../models/page';
   styleUrl: './p-products.scss',
 })
 export class PProducts {
-  url: string = "/api/products";
+  url: string = "/products";
 
   products!: Product[];
 
@@ -24,6 +24,19 @@ export class PProducts {
   getData(){
     this.http.getAll(this.url).subscribe({
       next: (datos) => this.products = (datos as unknown as Page<Product>).data,
+      error: (error) => console.log('ERROR ' + error.status),
+    })
+  }
+
+  findById(id: number){
+    this.http.get(this.url, id).subscribe({
+      next: (datos) => this.products = (datos as unknown as Page<Product>).data,
+      error: (error) => console.log('ERROR ' + error.status),
+    })
+  }
+  findByName(id: number){
+    this.http.get(this.url, id).subscribe({
+      next: (datos) => this.products = datos as unknown as Product[],
       error: (error) => console.log('ERROR ' + error.status),
     })
   }

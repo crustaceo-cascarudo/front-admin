@@ -1,26 +1,31 @@
-<div class="card-product">
+<div class="card-product" style=" cursor: pointer;" (click)="openModal()">
     <div class="d-flex flex-row justify-content-between">
-        <div>
+        <div class="">
             <h3 class="card-product__name">{{product.name}}</h3>
             <p class="card-product__prices">
-                <span class="card-product__price--final">{{product.finalPrice | currency}}</span>
-                @if(product.discountPercentage != 0){
-                    <span class="card-product__price--base">{{product.basePrice | currency}}</span>
-                    <span class="card-product__price--discount">{{(product.discountPercentage/100) | percent}}</span>
-                }
+                <span class="card-product__price--base">Precio: {{product.basePrice | currency}}</span>
+                <span class="card-product__price--discount">Descuento: {{(product.discountPercentage/100) |
+                    percent}}</span>
             </p>
         </div>
         <img class="card-product__img" src="{{product.image}}">
+
     </div>
-    
+    @if(product.discountPercentage != 0){
+    <span class="card-product__price--final">Precio Final: {{product.finalPrice | currency}}</span>
+    }
     <p class="card-product__ingredients">
         @for (i of product.ingredients; track i.id) {
-            <span class="card-product__ingredient">{{i.name}}</span>
+        <span class="card-product__ingredient">{{i.name}}</span>
         }
     </p>
     <p class="card-product__categories">
         @for (c of product.categories; track c.id) {
-            <span class="card-product__category">{{c.name}}</span>
+        <span class="card-product__category">{{c.name}}</span>
         }
     </p>
 </div>
+
+<ng-template cdkPortal>
+    <c-edit-modal></c-edit-modal>
+</ng-template>

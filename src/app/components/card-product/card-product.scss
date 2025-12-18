@@ -61,16 +61,14 @@ $transition: 180ms ease-in-out;
     font-family: var(--card-product-font-family-prices);
 
     &--final {
-      font-weight: 600;
       font-size: var(--card-product-font-size-big);
       color: red;
     }
 
     &--base {
       font-size: var(--card-product-font-size-default);
-      text-decoration: line-through;
     }
-    
+
     &--discount {
       font-size: var(--card-product-font-size-default);
     }
@@ -85,11 +83,11 @@ $transition: 180ms ease-in-out;
     margin-top: var(--card-product-content-margin);
   }
 
-    &__ingredient {
-      font-size: var(--card-product-font-size-default);
-      color: aqua;
-      font-weight: 400;
-    }
+  &__ingredient {
+    font-size: var(--card-product-font-size-default);
+    color: aqua;
+    font-weight: 400;
+  }
 
   &__categories {
     width: 100%;
@@ -99,11 +97,4 @@ $transition: 180ms ease-in-out;
     margin-bottom: var(--card-product-content-margin);
     margin-top: var(--card-product-content-margin);
   }
-
-    &__category {
-      font-size: var(--card-product-font-size-default);
-      color: blue;
-      font-weight: 400;
-    }
-
 }

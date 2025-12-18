@@ -1,11 +1,23 @@
-<div class="l-flex l-flex--direction-column l-flex--justify-center">
-    <form>
-        <div>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="name" ngModel required>
+<div class="container d-flex flex-column justify-content-center align-items-center h-75">
+    <form class="form-group w-75" (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <div [hidden]="usernameInput.valid || usernameInput.pristine" class="alert alert-danger">
+                Username is required
+            </div>
+            <input #usernameInput="ngModel" required [(ngModel)]="loginData.username"
+            type="text" name="username" class="form-control" 
+            id="username" aria-describedby="emailHelp">
         </div>
-        <div>
-            <label for=""></label>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <div [hidden]="passwordInput.valid || passwordInput.pristine" class="alert alert-danger">
+                Password is required
+            </div>
+            <input #passwordInput="ngModel" required [(ngModel)]="loginData.password"
+            type="password" name="password" class="form-control"
+             id="password">
         </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Submit</button>
     </form>
 </div>

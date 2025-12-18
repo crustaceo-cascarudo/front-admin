@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { provideRouter, RouterOutlet } from '@angular/router';
 import { NavBar } from "./components/nav-bar/navbar";
+import { provideHttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',

@@ -5,6 +5,7 @@ import { PProducts } from './components/pages/p-products/p-products';
 
 export const routes: Routes = [
     {path: '', component:PLogin},
+    {path: 'login', component:PLogin},
     {path: 'categories', component:PCategories},
     {path: 'products', component:PProducts},
 ];

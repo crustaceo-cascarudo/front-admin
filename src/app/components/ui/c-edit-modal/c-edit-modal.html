@@ -1,48 +1,61 @@
-<div class="card">
-    <div class="card-header">
+<div class="card border-1 border-dark">
+    <div class="card-header g--bg-colors-dark text-light g--font-size-4">
         {{attributes.at(keys.indexOf("name")).at(1)}}
     </div>
     <div class="card-body">
-        <div>
-            @for (k of keys; track $index) {
-            @if(checkIfArray(attributes.at($index).at(1))){
-            <p><strong>{{k}}:</strong></p>
-            <ul>
-                @for(subItem of attributes.at($index).at(1); track $index){
-                <li>{{subItem.name}}</li>
-                }
-            </ul>
-            }@else{
+        @for (k of keys; track $index) {
             @if(isReadOnlyField(k)){
-            <label class="form-label"><strong>{{k}}:</strong></label>
-            <p class="">{{attributes.at($index).at(1)}}</p>
-            }
-            @else {
-            @if(k == "finalPrice"){
-            <label class="form-label"><strong>{{k}}:</strong></label>
-            <p class="" type="text" id='{{attributes.at($index)}}'>
-                {{attributes.at(keys.indexOf("basePrice")).at(1) -
-                attributes.at(keys.indexOf("basePrice")).at(1) *
-                attributes.at(keys.indexOf("discountPercentage")).at(1) / 100 | number: '1.2-2'}}</p>
+                <div class="mb-4">
+                    <label class="form-label"><strong>{{k}}:</strong></label>
+                    <p class="form-control bg-secondary-subtle">{{attributes.at($index).at(1)}}</p>
+                </div>
             }@else{
-            @if(checkIfBoolean(attributes.at($index).at(1))) {
-            <label class="form-label"><strong>{{k}}:</strong></label>
-            <select class="form-select" [(ngModel)]="attributes[$index][1]">
-                <option [value]="true">Público</option>
-                <option [value]="false">Privado</option>
-            </select>
-            }@else{
-            <label class="form-label"><strong>{{k}}:</strong></label>
-            <input class="form-control" [(ngModel)]="attributes[$index][1]" type="text" id='{{attributes.at($index)}}'
-                value='{{attributes.at($index).at(1)}}'>
+                @if(checkIfArray(attributes.at($index).at(1))){
+                    <div class="mb-4">
+                        <p><strong>{{k}}:</strong></p>
+                        <ul>
+                            @for(subItem of attributes.at($index).at(1); track $index){
+                                <li>{{subItem.name}}</li>
+                            }
+                            <select class="form-select" [(ngModel)]="attributes[$index][1]">
+                                <option [value]="true">Público</option>
+                                <option [value]="false">Privado</option>
+                            </select>
+                        </ul>
+                    </div>  
+                }
+                @else {
+                    @if(k == "finalPrice"){
+                        <div class="mb-4">
+                            <label class="form-label"><strong>{{k}}:</strong></label>
+                            <p class="" type="text" id='{{attributes.at($index)}}'>
+                                {{attributes.at(keys.indexOf("basePrice")).at(1) -
+                                attributes.at(keys.indexOf("basePrice")).at(1) *
+                                attributes.at(keys.indexOf("discountPercentage")).at(1) / 100 | number: '1.2-2'}}</p>
+                        </div>
+                    }@else{
+                        @if(checkIfBoolean(attributes.at($index).at(1))) {
+                            <div class="mb-4">
+                                <label class="form-label"><strong>{{k}}:</strong></label>
+                                <select class="form-select" [(ngModel)]="attributes[$index][1]">
+                                    <option [value]="true">Público</option>
+                                    <option [value]="false">Privado</option>
+                                </select>
+                            </div>
+                        }@else{
+                            <div class="mb-4">
+                                <label class="form-label"><strong>{{k}}:</strong></label>
+                                <input class="form-control" [(ngModel)]="attributes[$index][1]" type="text">
+                            </div>
+                        }
+                    }
+                }
             }
-            }
-            }
-            }
-            }
-            <div class="d-flex flex-row gap-2 justify-content-end mt-3">
+        }
+        <div class="d-flex flex-row gap-2 justify-content-end mt-4">
             <button class="btn bg-warning" (click)="upload()">Enviar</button>
             <button class="btn bg-danger" (click)="delete()">Eliminar</button>
-        </div>
+         </div>
+        
     </div>
 </div>

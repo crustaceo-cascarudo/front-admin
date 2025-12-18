@@ -8,7 +8,7 @@
     @each $key, $value in utilidades.$colors {
         --mlt-sys-colors-#{$key}: #{list.nth($value, 6)};
 
-        @for $i from 2 through list.length($value) {
+        @for $i from 1 through list.length($value) {
             --mlt-sys-colors-#{$key}-#{($i)-1}: #{list.nth($value, $i)};
         }
     }
@@ -40,7 +40,7 @@ $base-colors: (
     'warning-light': #FFC107,
     'warning-dark': var(--mlt-sys-colors-yellow),
     'info': var(--mlt-sys-colors-cyan),
-    'light': #F2F0FE,
+    'light': #fffefa,
     'dark': var(--mlt-sys-colors-gray-8),
 );
 

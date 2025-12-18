@@ -17,7 +17,7 @@ export class CEditModal {
   @Input() apiurl!: string;
   @Input() onBeforeSubmit?: (obj: Record<string, any>) => Record<string, any>;
   @Input() excludeFields: string[] = ['finalPrice'];
-  @Input() readonlyFields: string[] = ['id', 'slug', 'role'];
+  @Input() readonlyFields: string[] = ['id', 'slug', 'role', 'finalPrice'];
   @Output() saved = new EventEmitter<void>();
   keys!: string[];
   attributes!: any[];

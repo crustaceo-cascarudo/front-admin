@@ -1,26 +1,27 @@
-<nav class="myNavbar">
-    <div class="myNavbar__container">
-        <img class="myNavbar__image" src="/images/fierabrasLogoImage64x64.png" alt="Logo">
-        <div class="myNavbar__menu">
-            @if (true) {
-                <ul class="myNavbar__list">
-                    <li>
-                        <a routerLink="/categories">Categorias</a>
-                    </li>
-                    <li>
-                        <a routerLink="/products">Productos</a>
-                    </li>
-                    <li>
-                        <a routerLink="/ingredients">Ingredientes</a>
-                    </li>
-                    <li>
-                        <a routerLink="/users">Usuarios</a>
-                    </li>
-                    <li>
-                        <button class="btn bg-danger" (click)="logOut()">Cerrar Sesion</button>
-                    </li>
-                </ul>
-            }
+<nav class="navbar navbar-expand navbar-light px-3 py-1 g--bg-colors-red-6">
+    <div class="navbar-brand d-flex flex-row align-items-center g--font-size-4 text-light">
+        <img src="/images/fierabrasLogoImage64x64.png" alt="Logo">
+        <div class="d-flex flex-column align-items-center g--colors-yellow-2">
+            <span>Crustaceo</span>
+            <span>Cascarudo</span>
         </div>
+    </div>
+    <div class="collapse navbar-collapse justify-content-between">
+        <ul class="navbar-nav mr-auto g--font-size-4">
+            <li class="nav-item">
+                <a class="nav-link text-light" routerLink="/categories">Categorias</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" routerLink="/products">Productos</a>
+            </li>
+            <li>
+                <a class="nav-link text-light" routerLink="/ingredients">Ingredientes</a>
+            </li>
+            <li>
+                <a class="nav-link text-light" routerLink="/users">Usuarios</a>
+            </li>
+
+        </ul>
+        <button class="btn btn-light" (click)="logOut()">Cerrar Sesion</button>
     </div>
 </nav>

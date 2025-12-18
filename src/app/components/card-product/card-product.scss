@@ -3,9 +3,6 @@ $container-padding-md: 1.5rem;
 $container-padding-lg: 2rem;
 $container-border: 1px solid rgba(0, 0, 0, 0.06);
 $container-radius: 0.5rem;
-$container-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-$container-shadow-elevated: 0 6px 20px rgba(0, 0, 0, 0.12);
-$container-gap: 1rem;
 $transition: 180ms ease-in-out;
 
 
@@ -20,11 +17,11 @@ $transition: 180ms ease-in-out;
   --card-product-font-family-prices: var(--mlt-sys-font-family-titulo);
 
   --card-product-padding: var(--mlt-sys-padding-8);
-  --card-product-box-shadow: var(--mlt-sys-box-shadow-5);
+  --card-product-box-shadow: var(--mlt-sys-box-shadow-3);
   --card-product-margin: 10px;
   --card-product-image-margin: 5px;
 
-  --card-product-background-color: var(--mlt-sys-colors-gray);
+  --card-product-background-color: var(--mlt-sys-colors-light);
 
   box-sizing: border-box;
   width: 220pt;
@@ -62,7 +59,7 @@ $transition: 180ms ease-in-out;
 
     &--final {
       font-size: var(--card-product-font-size-big);
-      color: red;
+      font-weight: 500;
     }
 
     &--base {
@@ -78,6 +75,7 @@ $transition: 180ms ease-in-out;
     width: 100%;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
     margin-bottom: var(--card-product-content-margin);
     margin-top: var(--card-product-content-margin);
@@ -85,8 +83,6 @@ $transition: 180ms ease-in-out;
 
   &__ingredient {
     font-size: var(--card-product-font-size-default);
-    color: aqua;
-    font-weight: 400;
   }
 
   &__categories {
@@ -97,4 +93,8 @@ $transition: 180ms ease-in-out;
     margin-bottom: var(--card-product-content-margin);
     margin-top: var(--card-product-content-margin);
   }
+
+    &__category {
+      font-size: var(--card-product-font-size-default);
+    }
 }

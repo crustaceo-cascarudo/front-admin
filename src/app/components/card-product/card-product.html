@@ -1,6 +1,6 @@
 <div class="card-product" style=" cursor: pointer;" (click)="openModal()">
-    <div class="d-flex flex-row justify-content-between">
-        <div class="">
+    <div class="d-flex flex-row justify-content-between align-items-center gap-3">
+        <div >
             <h3 class="card-product__name">{{product.name}}</h3>
             <p class="card-product__prices">
                 <span class="card-product__price--base">Precio: {{product.basePrice | currency}}</span>
@@ -8,22 +8,29 @@
                     percent}}</span>
             </p>
         </div>
-        <img class="card-product__img" src="{{product.image}}">
-
+        <img class="card-product__img img-fluid" src="{{product.image}}">
     </div>
     @if(product.discountPercentage != 0){
     <span class="card-product__price--final">Precio Final: {{product.finalPrice | currency}}</span>
     }
-    <p class="card-product__ingredients">
-        @for (i of product.ingredients; track i.id) {
-        <span class="card-product__ingredient">{{i.name}}</span>
-        }
-    </p>
-    <p class="card-product__categories">
-        @for (c of product.categories; track c.id) {
-        <span class="card-product__category">{{c.name}}</span>
-        }
-    </p>
+
+    <div class="my-2">
+        <div class="g--font-size-4 fw-medium">Ingredientes:</div>
+        <p class="card-product__ingredients">
+            @for (i of product.ingredients; track i.id) {
+                <span class="card-product__ingredient">{{i.name}}</span>
+            }
+        </p>
+    </div>
+    
+    <div class="my-2">
+        <div class="g--font-size-4 fw-medium">Categorias:</div>
+        <p class="card-product__categories">
+            @for (c of product.categories; track c.id) {
+                <span class="card-product__category">{{c.name}}</span>
+            }
+        </p>
+    </div>
 </div>
 
 <ng-template cdkPortal>

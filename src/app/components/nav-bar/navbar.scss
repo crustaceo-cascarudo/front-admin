@@ -4,7 +4,6 @@
     --myNavbar-bg-color: var(--mlt-sys-colors-blue);
     --myNavbar-shadow: var(--mlt-sys-box-shadow-4);
     --myNavbar-padding: var(--mlt-sys-padding-10);
-    --myNavbar-round-edge: 120px;
     --myNavbar-gap: 30px;
     --myNavbar-text-color: aliceblue;
     --myNavbar-text-size: 20px;
@@ -14,7 +13,6 @@
     height: $myNavbar-height;
     background-color: var(--myNavbar-bg-color);
     box-shadow: var(--myNavbar-shadow);
-    border-bottom-right-radius: var(--myNav-bar-round-edge);
     padding: var(--myNavbar-padding);
 
     &__container{
@@ -34,6 +32,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        height: 100%;
         color: var(--myNavbar-text-color);
     }
 
@@ -41,6 +40,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: center;
         font-size: var(--myNavbar-text-size);
     }
 

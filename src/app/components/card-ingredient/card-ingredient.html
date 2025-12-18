@@ -1,0 +1,13 @@
+<div class="card g--bg-colors-light" style=" cursor: pointer;" (click)="openModal()">
+    <div class="card-body d-flex flex-column justify-content-around align-items-center">
+        <div class="">
+            <img class="card-ingredient__img my-1" src="{{ingredient.image}}">
+            <h3 class="g--font-size-4 fw-medium">{{ingredient.name}}</h3>
+        </div> 
+        <p class="">Precio: {{ingredient.price | currency}}</p>
+    </div>
+</div>
+
+<ng-template cdkPortal>
+    <c-edit-modal></c-edit-modal>
+</ng-template>

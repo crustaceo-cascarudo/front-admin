@@ -1,0 +1,11 @@
+<div class="w-100 h-100 p-5 d-flex flex-column justify-content-start g--bg-colors-dark">
+    <h3 class="mb-3 g--colors-light">Articulos &nbsp;|&nbsp; Pagina: {{page.pageNumber}} Elementos: {{page.pageSize}}
+    </h3>
+    <div class="d-flex row row-cols-auto g-3 justify-content-around align-content-center">
+        @for(i of ingredients; track i.id){
+        <div class="d-flex justify-content-center">
+            <card-ingredient (update)="getData()" [ingredient]="i"></card-ingredient>
+        </div>
+        }
+    </div>
+</div>

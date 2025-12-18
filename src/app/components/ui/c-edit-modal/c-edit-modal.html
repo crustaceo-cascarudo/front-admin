@@ -1,0 +1,49 @@
+<div class="card">
+    <div class="card-header">
+        {{attributes.at(keys.indexOf("name")).at(1)}}
+    </div>
+    <div class="card-body">
+        <div>
+            @for (k of keys; track $index) {
+            @if(checkIfArray(attributes.at($index).at(1))){
+            <p><strong>{{k}}:</strong></p>
+            <ul>
+                @for(subItem of attributes.at($index).at(1); track $index){
+                <li>{{subItem.name}}</li>
+                }
+            </ul>
+            }@else{
+            @if(isReadOnlyField(k)){
+            <label class="form-label"><strong>{{k}}:</strong></label>
+            <p class="">{{attributes.at($index).at(1)}}</p>
+            }
+            @else {
+            @if(k == "finalPrice"){
+            <label class="form-label"><strong>{{k}}:</strong></label>
+            <p class="" type="text" id='{{attributes.at($index)}}'>
+                {{attributes.at(keys.indexOf("basePrice")).at(1) -
+                attributes.at(keys.indexOf("basePrice")).at(1) *
+                attributes.at(keys.indexOf("discountPercentage")).at(1) / 100 | number: '1.2-2'}}</p>
+            }@else{
+            @if(checkIfBoolean(attributes.at($index).at(1))) {
+            <label class="form-label"><strong>{{k}}:</strong></label>
+            <select class="form-select" [(ngModel)]="attributes[$index][1]">
+                <option [value]="true">Público</option>
+                <option [value]="false">Privado</option>
+            </select>
+            }@else{
+            <label class="form-label"><strong>{{k}}:</strong></label>
+            <input class="form-control" [(ngModel)]="attributes[$index][1]" type="text" id='{{attributes.at($index)}}'
+                value='{{attributes.at($index).at(1)}}'>
+            }
+            }
+            }
+            }
+        }
+        <div class="d-flex flex-row gap-2 justify-content-end mt-3">
+            <button class="btn bg-warning" (click)="upload()">Enviar</button>
+            <button class="btn bg-danger" (click)="delete()">Eliminar</button>
+        </div>
+    </div>
+    </div>
+</div>

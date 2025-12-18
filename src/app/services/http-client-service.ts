@@ -13,7 +13,8 @@ export class HttpClientService {
   baseUrl = 'http://localhost:8080/api';
 
   getAll(url: string): Observable<Page<any>> {
-    return this.http.get<Page<any>>(this.baseUrl+url)
+    console.log("Url:"+this.baseUrl+url);
+    return this.http.get<Page<any>>(this.baseUrl+url);
   }
 
   get(url: string, id: number): Observable<any> {
@@ -24,28 +25,16 @@ export class HttpClientService {
     return this.http.get<any[]>(this.baseUrl +"/search" + "?name=" + name);
   }
 
-  getByCategoria(categoria: string) {
-    return this.http.get<Product[]>(this.baseUrl + "?categoria=" + categoria);
+
+  post(url: string, object: Record<string, any>) {
+    return this.http.post<Record<string, any>>(this.baseUrl + url, object);
+  }
+  put(url: string, id: number, object: Record<string, any>) {
+    return this.http.put<Record<string, any>>(this.baseUrl + url + "/" + id, object);
   }
 
-
-
-
-  getByPrecio(precio: number) {
-    return this.http.get<Product[]>(this.baseUrl + "/?precio_gte=" + precio);
-  }
-  
-
-  postArticulo(articulo: Product) {
-    return this.http.post<Product>(this.baseUrl, articulo);
-  }
-
-  putArticulo(articulo: Product) {
-    return this.http.put<Product>(this.baseUrl + "/" + String(articulo.id), articulo);
-  }
-
-  delete(id: String) {
+  delete(url: string, id: number) {
     var response: Boolean;
-    this.http.delete(this.baseUrl + "/" + id).subscribe((r) => console.log(r));
+    this.http.delete(this.baseUrl + url + "/" + id).subscribe((r) => console.log(r));
   }
 }

@@ -22,6 +22,7 @@ export class CEditModal {
   keys!: string[];
   attributes!: any[];
 
+  arrayValueToBeAdded: any = null;
 
   ngOnInit() {
     this.keys = Object.keys(this.object!);

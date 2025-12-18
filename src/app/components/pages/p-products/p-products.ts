@@ -1,8 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { Product } from '../../../models/product';
 import { CardProduct } from "../../card-product/card-product";
 import { HttpClientService } from '../../../services/http-client-service';
 import { Page } from '../../../models/page';
+import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { CEditModal } from '../../ui/c-edit-modal/c-edit-modal';
+import { ProductInsert } from '../../../models/productInsert';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'p-products',
@@ -17,6 +22,11 @@ export class PProducts {
   products!: Product[];
 
   http = inject(HttpClientService);
+
+  portal = new ComponentPortal(CEditModal);
+
+  private overlay = inject(Overlay);
+  private destroyRef = inject(DestroyRef);
 
   ngOnInit() {
     this.getData();
@@ -44,5 +54,35 @@ export class PProducts {
       next: (datos) => this.products = datos as unknown as Product[],
       error: (error) => console.log('ERROR ' + error.status),
     })
+  }
+
+  openCreateModal() {
+    const config = new OverlayConfig({
+      positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
+      hasBackdrop: true,
+    });
+
+    const overlayRef = this.overlay.create(config);
+    const componentRef = overlayRef.attach(this.portal);
+    const newProduct: ProductInsert = {
+          name: '',
+          ingredients: [],
+          basePrice: 0,
+          discountPercentage: 0,
+          finalPrice: 0,
+          image: '',
+          categories: []
+    };
+
+    componentRef.instance.object = newProduct;
+    componentRef.instance.method = "POST";
+    componentRef.instance.apiurl = "/products";
+    
+    componentRef.instance.saved.subscribe(() => {
+      this.getData();
+      overlayRef.detach();
+    });
+
+    overlayRef.backdropClick().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => overlayRef.detach());
   }
 }

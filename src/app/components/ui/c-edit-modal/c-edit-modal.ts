@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { Product } from '../../../models/product';
 import { FormsModule } from '@angular/forms';
 import { HttpClientService } from '../../../services/http-client-service';
 
@@ -18,7 +17,7 @@ export class CEditModal {
   @Input() apiurl!: string;
   @Input() onBeforeSubmit?: (obj: Record<string, any>) => Record<string, any>;
   @Input() excludeFields: string[] = ['finalPrice'];
-  @Input() readonlyFields: string[] = ['id', 'slug'];
+  @Input() readonlyFields: string[] = ['id', 'slug', 'role'];
   @Output() saved = new EventEmitter<void>();
   keys!: string[];
   attributes!: any[];

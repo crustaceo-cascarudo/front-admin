@@ -1,40 +1,57 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Product } from '../models/product';
+import { inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Page } from '../models/page';
+import { Product } from '../models/product';
+import { Category } from '../models/category/category';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpClientService {
-  constructor(private http: HttpClient) { }
+  private baseUrl = "http://localhost:8080/api";
 
-  baseUrl = 'http://localhost:8080/api';
+  private categoriesSubject = new BehaviorSubject<Category[]>([]);
+  categories$ = this.categoriesSubject.asObservable();
 
-  getAll(url: string): Observable<Page<any>> {
-    console.log("Url:"+this.baseUrl+url);
-    return this.http.get<Page<any>>(this.baseUrl+url);
+  httpClient = inject(HttpClient);
+
+  constructor() { }
+
+  getAll<T>(url: string): Observable<Page<T>> {
+    return this.httpClient.get<Page<T>>(`${this.baseUrl + url}`);
   }
 
-  get(url: string, id: number): Observable<any> {
-    return this.http.get<any>(this.baseUrl + url + "/" + id);
+  getById<T>(url: string, id: number): Observable<T> {
+    return this.httpClient.get<T>(`${this.baseUrl}${url}/${id}`);
   }
 
-  findByName(url: string, name: string) {
-    return this.http.get<any[]>(this.baseUrl +"/search" + "?name=" + name);
+  getByName<T>(url: string, name: string): Observable<T[]> {
+    return this.httpClient.get<Page<T>>(`${this.baseUrl + url}?name=${name}`)
+      .pipe(
+        map(response => response.data)
+      );
   }
 
+  create<T>(url: string, object: T): Observable<T> {
+    return this.httpClient.post<T>(`${this.baseUrl + url}`, object);
+  }
 
   post(url: string, object: Record<string, any>) {
-    return this.http.post<Record<string, any>>(this.baseUrl + url, object);
-  }
-  put(url: string, id: number, object: Record<string, any>) {
-    return this.http.put<Record<string, any>>(this.baseUrl + url + "/" + id, object);
+    return this.httpClient.post<Record<string, any>>(this.baseUrl + url, object);
   }
 
-  delete(url: string, id: number) {
-    var response: Boolean;
-    this.http.delete(this.baseUrl + url + "/" + id).subscribe((r) => console.log(r));
+  put(url: string, id: number, object: Record<string, any>) {
+    return this.httpClient.put<Record<string, any>>(this.baseUrl + url + '/' + id, object);
+  }
+
+  update(url: string, id: number, any: any): Observable<any> {
+    return this.httpClient.put<any>(`${this.baseUrl + url}${id}`, any);
+  }
+
+  delete(url: string, id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.baseUrl + url}/${id}`);
   }
 }

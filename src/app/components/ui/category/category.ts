@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Category } from '../../../models/category';
+import { Category } from '../../../models/category/category';
+
 
 @Component({
-  selector: 'c-category',
+  selector: 'category',
   imports: [],
-  templateUrl: './c-category.html',
-  styleUrl: './c-category.scss',
+  templateUrl: './category.html',
+  styleUrl: './category.scss',
 })
 export class CCategory {
   @Input() category!: Category;

@@ -1,7 +1,7 @@
-import { Category } from "./category";
+import { Category } from "./category/category";
 import { Ingredient } from "./ingredient";
 
-export interface Product{
+export interface Product {
     id: number,
     name: string,
     ingredients: Ingredient[],

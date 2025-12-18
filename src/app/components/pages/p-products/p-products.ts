@@ -33,14 +33,14 @@ export class PProducts {
   }
 
   findById(id: number) {
-    this.http.get(this.url, id).subscribe({
+    this.http.getById(this.url, id).subscribe({
       next: (datos) => this.products = (datos as unknown as Page<Product>).data,
       error: (error) => console.log('ERROR ' + error.status),
     })
   }
 
   findByName(name: string) {
-    this.http.findByName(this.url, name).subscribe({
+    this.http.getByName(this.url, name).subscribe({
       next: (datos) => this.products = datos as unknown as Product[],
       error: (error) => console.log('ERROR ' + error.status),
     })

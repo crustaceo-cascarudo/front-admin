@@ -14,8 +14,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class CardProduct {
   @Input() product!: Product;
-  @Output() update = new EventEmitter<void>();
 
+  @Output() update = new EventEmitter<void>();
   portal = new ComponentPortal(CEditModal);
 
   private overlay = inject(Overlay);
@@ -29,7 +29,6 @@ export class CardProduct {
 
     const overlayRef = this.overlay.create(config);
     const componentRef = overlayRef.attach(this.portal);
-
     componentRef.instance.object = this.product;
     componentRef.instance.method = "PUT";
     componentRef.instance.apiurl = "/products";
@@ -38,7 +37,6 @@ export class CardProduct {
       this.update.emit();
       overlayRef.detach();
     });
-
     overlayRef.backdropClick().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => overlayRef.detach());
   }
 

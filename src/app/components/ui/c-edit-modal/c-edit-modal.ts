@@ -75,7 +75,7 @@ export class CEditModal {
 
   delete(){
     let obj: Record<string, any> = this.makeRecord();
-    this.http.delete(this.apiurl, obj['id']);
+    this.http.delete(this.apiurl, obj['id']).subscribe(() => { this.saved.emit(); });
   }
 
   makeRecord(): Record<string, any>{

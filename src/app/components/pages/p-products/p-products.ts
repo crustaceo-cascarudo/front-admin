@@ -77,6 +77,7 @@ export class PProducts {
     componentRef.instance.object = newProduct;
     componentRef.instance.method = "POST";
     componentRef.instance.apiurl = "/products";
+    componentRef.instance.attributeOptionsToBeFilled = ["ingredients", "categories"];
     
     componentRef.instance.saved.subscribe(() => {
       this.getData();

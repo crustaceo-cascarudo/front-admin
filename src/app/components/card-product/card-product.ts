@@ -32,6 +32,7 @@ export class CardProduct {
     componentRef.instance.object = this.product;
     componentRef.instance.method = "PUT";
     componentRef.instance.apiurl = "/products";
+    componentRef.instance.attributeOptionsToBeFilled = ["ingredients", "categories"];
 
     componentRef.instance.saved.subscribe(() => {
       this.update.emit();

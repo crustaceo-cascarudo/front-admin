@@ -105,6 +105,12 @@ export class CEditModal {
     });
   }
 
+  removeSelectedValue(attrKey: string, optionToBeRemoved: any){
+    let index: number = this.attributes.findIndex(([key, value]) => key === attrKey);
+    this.attributes[index][1] = this.attributes[index][1].filter((option: any) => option.id !== optionToBeRemoved.id);
+    console.log(this.attributes[index][1])
+  }
+
   addSelectedValue(attrKey: string){
     let index: number = this.attributes.findIndex(([key, value]) => key === attrKey);
     let optionToBeAdded = this.options[attrKey].find((option: any) => option.name === this.arrayValueToBeAdded);

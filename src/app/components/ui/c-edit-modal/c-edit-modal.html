@@ -18,12 +18,12 @@
                                 @for(subItem of attributes.at($index).at(1); track $index){
                                     <li>
                                         {{subItem.name}}
-                                        <button class="btn btn-sm btn-outline-danger">Borrar</button>
+                                        <button class="btn btn-sm btn-outline-danger border-0 fs-5" (click)="removeSelectedValue(k, subItem)">🗑</button>
                                     </li>
                                 }
                             </ul>
                             <select class="form-select" [(ngModel)]="arrayValueToBeAdded" (change)="addSelectedValue(k)">
-                                <option disabled selected>-- Añade un elemento --</option>
+                                <option [value]="" disabled selected>-- Añade un elemento --</option>
                                 @for(option of options[k]; track $index){
                                     <option [value]="option.name">{{option.name}}</option>
                                 }

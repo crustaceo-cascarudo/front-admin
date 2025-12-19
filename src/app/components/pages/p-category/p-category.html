@@ -24,7 +24,7 @@
                         @for (category of categories; track category.id) {
                         <tr>
                             <td>{{ category.id }}</td>
-                            <td>{{ category.name }}</td>
+                            <td><button class="link-button" (click)="handleEdit(category)">{{ category.name }}</button></td>
                             <td><span class="badge bg-secondary">{{ category.slug }}</span></td>
                             <td>{{ category.description || 'Sin descripción' }}</td>
                             <td>
@@ -36,14 +36,10 @@
                             </td>
                             <td class="text-center">
                                 <div class="btn-group" role="group">
-                                    <button class="btn btn-sm btn-outline-primary" (click)="handleEdit(category)"
-                                        title="Editar">
-                                        <i class="bi bi-pencil"></i>
-                                        Editar</button>
-                                    <button class="btn btn-sm btn-outline-danger" (click)="handleDelete(category.id)"
+                                    <button class="btn btn-outline-danger" (click)="handleDelete(category.id)"
                                         title="Eliminar">
                                         <i class="bi bi-trash"></i>
-                                        Eliminar</button>
+                                        🗑</button>
                                 </div>
                             </td>
                         </tr>

@@ -30,6 +30,6 @@ export class LoginService {
     }
 
     logOut() {
-        this.authService.removeToken();
+        this.authService.logout().subscribe();
     }
 }

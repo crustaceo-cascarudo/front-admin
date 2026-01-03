@@ -29,8 +29,8 @@ export class CEditModal {
   arrayValueToBeAdded: string = "";
 
   ngOnInit() {
-    this.keys = Object.keys(this.object!);
-    this.attributes = Object.entries(this.object!);
+    this.keys = Object.keys(JSON.parse(JSON.stringify(this.object!)));
+    this.attributes = Object.entries(JSON.parse(JSON.stringify(this.object!)));
     this.fillOptionArray();
   }
 

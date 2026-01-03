@@ -24,7 +24,7 @@ export class CardProduct {
   protected openModal() {
     const config = new OverlayConfig({
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
-      hasBackdrop: true,
+      hasBackdrop: true
     });
 
     const overlayRef = this.overlay.create(config);

@@ -23,6 +23,7 @@ export class CEditModal {
   @Output() saved = new EventEmitter<void>();
   keys!: string[];
   attributes!: any[];
+  //Options all the values used to fill select inputs, and is filtered later by attrKey
   options: Record<string, any[]> = {};
 
   arrayValueToBeAdded: string = "";
@@ -45,15 +46,19 @@ export class CEditModal {
     return this.readonlyFields.includes(key);
   }
 
-  upload(){
-    var obj: Record<string, any> = {};
-    this.attributes.forEach(([key, value]) => {
-      if (!this.excludeFields.includes(key)) {
-        obj[key] = value;
-      }
+  fillOptionArray() {
+    this.attributeOptionsToBeFilled.forEach(attrKey => {
+      this.http.getAll("/" + attrKey).subscribe(response => {
+        const receivedOptions = (response as Page<any>).data;
 
-      
+        const index: number = this.attributes.findIndex(([key, value]) => key === attrKey);
+        this.options[attrKey] = receivedOptions.filter((option: any) => !this.attributes[index][1].some((attribute: any) => attribute.id === option.id));
+      });
     });
+  }
+
+  upload() {
+    var obj = this.makeRecord();
 
     if (this.onBeforeSubmit) {
       obj = this.onBeforeSubmit(obj);
@@ -77,15 +82,15 @@ export class CEditModal {
     }
   }
 
-  delete(){
+  delete() {
     let obj: Record<string, any> = this.makeRecord();
     this.http.delete(this.apiurl, obj['id']).subscribe(() => { this.saved.emit(); });
   }
 
-  makeRecord(): Record<string, any>{
+  makeRecord(): Record<string, any> {
     var obj: Record<string, any> = {};
     this.attributes.forEach(([key, value]) => {
-      if (key != "finalPrice") {
+      if (!this.excludeFields.includes(key)) {
         obj[key] = value;
       }
     });
@@ -94,28 +99,18 @@ export class CEditModal {
     return obj;
   }
 
-  fillOptionArray(){
-    
-    console.log(this.attributeOptionsToBeFilled);
-    
-    this.attributeOptionsToBeFilled.forEach(attrKey => {
-      this.http.getAll("/"+attrKey).subscribe(response => {
-       this.options[attrKey] = (response as Page<any>).data;
-      });
-    });
-  }
-
-  removeSelectedValue(attrKey: string, optionToBeRemoved: any){
-    let index: number = this.attributes.findIndex(([key, value]) => key === attrKey);
+  removeSelectedValue(attrKey: string, optionToBeRemoved: any) {
+    const index: number = this.attributes.findIndex(([key, value]) => key === attrKey);
     this.attributes[index][1] = this.attributes[index][1].filter((option: any) => option.id !== optionToBeRemoved.id);
-    console.log(this.attributes[index][1])
+    this.fillOptionArray();
   }
 
-  addSelectedValue(attrKey: string){
-    let index: number = this.attributes.findIndex(([key, value]) => key === attrKey);
-    let optionToBeAdded = this.options[attrKey].find((option: any) => option.name === this.arrayValueToBeAdded);
+  addSelectedValue(attrKey: string) {
+    const index: number = this.attributes.findIndex(([key, value]) => key === attrKey);
+    const optionToBeAdded = this.options[attrKey].find((option: any) => option.name === this.arrayValueToBeAdded);
+
     this.attributes[index][1].push(optionToBeAdded);
-    console.log(this.arrayValueToBeAdded);
-    console.log(this.attributes[index][1])
+    this.fillOptionArray();
+    this.arrayValueToBeAdded = "";
   }
 }

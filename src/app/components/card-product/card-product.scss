@@ -38,7 +38,7 @@ $transition: 180ms ease-in-out;
   -moz-osx-font-smoothing: grayscale;
 
   &__img {
-    width: 100%;
+    width: 160px;
     height: auto;
     margin: var(--card-product-image-margin);
   }
@@ -47,6 +47,7 @@ $transition: 180ms ease-in-out;
     font-family: var(--card-product-font-family-default);
     font-size: var(--card-product-font-size-big);
     color: black;
+    font-weight: 600;
   }
 
   &__prices {
@@ -76,9 +77,7 @@ $transition: 180ms ease-in-out;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: var(--card-product-content-margin);
-    margin-top: var(--card-product-content-margin);
+    column-gap: 15px;
   }
 
   &__ingredient {
@@ -89,9 +88,7 @@ $transition: 180ms ease-in-out;
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: var(--card-product-content-margin);
-    margin-top: var(--card-product-content-margin);
+    column-gap: 15px;
   }
 
     &__category {

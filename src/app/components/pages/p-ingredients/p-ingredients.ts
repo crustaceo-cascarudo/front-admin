@@ -73,7 +73,7 @@ export class PIngredients {
 
     componentRef.instance.object = newProduct;
     componentRef.instance.method = "POST";
-    componentRef.instance.apiurl = "/products";
+    componentRef.instance.apiurl = "/ingredients";
 
     componentRef.instance.saved.subscribe(() => {
       this.getData();

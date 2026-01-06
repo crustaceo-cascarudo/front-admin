@@ -1,14 +1,16 @@
 <div class="card-product" style=" cursor: pointer;" (click)="openModal()">
-    <div class="d-flex flex-row justify-content-between align-items-center gap-3">
-        <div>
+    <div class="d-flex flex-row justify-content-center align-items-start gap-3 mb-1" style="height: fit-content;">
+        <div class="w-50">
             <h3 class="card-product__name">{{product.name}}</h3>
-            <p class="card-product__prices">
+            <div class="card-product__prices">
                 <span class="card-product__price--base">Precio: <br/> {{product.basePrice | currency}}</span>
                 <span class="card-product__price--discount">Descuento: <br/> {{(product.discountPercentage/100) |
                     percent}}</span>
-            </p>
+            </div>
         </div>
-        <img class="card-product__img img-fluid bg-danger" src="{{product.image}}">
+        <div class="w-50 pb-2" style="height: stretch;">
+            <img class="card-product__img" src="{{product.image}}">
+        </div> 
     </div>
     
     <span class="card-product__price--final">Precio Final: {{product.finalPrice | currency}}</span>

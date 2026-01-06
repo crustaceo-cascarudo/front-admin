@@ -36,11 +36,13 @@ $transition: 180ms ease-in-out;
   transition: box-shadow $transition, transform $transition;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-wrap: break-word;
 
   &__img {
-    width: 160px;
-    height: auto;
-    margin: var(--card-product-image-margin);
+    width:auto;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
   }
 
   &__name {

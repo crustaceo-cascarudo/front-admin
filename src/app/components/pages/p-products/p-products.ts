@@ -8,17 +8,18 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { CEditModal } from '../../ui/c-edit-modal/c-edit-modal';
 import { ProductInsert } from '../../../models/productInsert';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'p-products',
-  imports: [CardProduct],
+  imports: [CardProduct, MatPaginatorModule],
   templateUrl: './p-products.html',
   styleUrl: './p-products.scss',
 })
 export class PProducts {
   url: string = "/products";
 
-  page!: Page<Product>;
+  pageContent!: Page<Product>;
   products!: Product[];
 
   http = inject(HttpClientService);
@@ -28,18 +29,25 @@ export class PProducts {
   private overlay = inject(Overlay);
   private destroyRef = inject(DestroyRef);
 
+
   ngOnInit() {
     this.getData();
   }
 
-  getData() {
-    this.http.getAll(this.url).subscribe({
+  getData(pageIndex: number = 1, pageSize: number = 10) {
+    this.http.getPage(this.url, pageIndex, pageSize).subscribe({
       next: (datos) => {
-        this.page = datos as unknown as Page<Product>;
-        this.products = this.page?.data;
+        console.log(datos);
+        
+        this.pageContent = datos as unknown as Page<Product>;
+        this.products = this.pageContent?.data;
       },
       error: (error) => console.log('ERROR ' + error.status),
     })
+  }
+
+  handlePageEvent(event: PageEvent){
+    this.getData(event.pageIndex+1, event.pageSize);
   }
 
   findById(id: number) {

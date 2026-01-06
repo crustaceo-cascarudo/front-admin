@@ -9,17 +9,18 @@ import { ProductInsert } from '../../../models/productInsert';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { CEditModal } from '../../ui/c-edit-modal/c-edit-modal';
 import { IngredientInsert } from '../../../models/ingredientInsert';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'p-ingredients',
-  imports: [CardIngredient],
+  imports: [CardIngredient, MatPaginatorModule],
   templateUrl: './p-ingredients.html',
   styleUrl: './p-ingredients.scss',
 })
 export class PIngredients {
   url: string = "/ingredients";
 
-  page!: Page<Ingredient>;
+  pageContent!: Page<Ingredient>;
   ingredients!: Ingredient[];
 
   http = inject(HttpClientService);
@@ -33,14 +34,18 @@ export class PIngredients {
     this.getData();
   }
 
-  getData() {
-    this.http.getAll(this.url).subscribe({
+  getData(pageIndex: number = 1, pageSize: number = 10) {
+    this.http.getPage(this.url, pageIndex, pageSize).subscribe({
       next: (datos) => {
-        this.page = datos as unknown as Page<Ingredient>;
-        this.ingredients = this.page?.data;
+        this.pageContent = datos as unknown as Page<Ingredient>;
+        this.ingredients = this.pageContent?.data;
       },
       error: (error) => console.log('ERROR ' + error.status),
     })
+  }
+
+  handlePageEvent(event: PageEvent) {
+    this.getData(event.pageIndex + 1, event.pageSize);
   }
 
   findById(id: number) {

@@ -1,0 +1,97 @@
+$container-max-width: 1140px;
+$container-padding-md: 1.5rem;
+$container-padding-lg: 2rem;
+$container-border: 1px solid rgba(0, 0, 0, 0.06);
+$container-radius: 0.5rem;
+$transition: 180ms ease-in-out;
+
+
+.card-ingredient {
+    --card-ingredient-font-size-default: var(--mlt-sys-font-size-3);
+    --card-ingredient-font-size-big: var(--mlt-sys-font-size-4);
+    --card-ingredient-font-size-small: var(--mlt-sys-font-size-2);
+    --card-ingredient-font-size-prices: var(--mlt-sys-font-size-4);
+
+    --card-ingredient-font-family-default: var(--mlt-sys-font-family-default);
+    --card-ingredient-font-family-firmas: var(--mlt-sys-font-family-firmas);
+    --card-ingredient-font-family-prices: var(--mlt-sys-font-family-titulo);
+
+    --card-ingredient-padding: var(--mlt-sys-padding-8);
+    --card-ingredient-box-shadow: var(--mlt-sys-box-shadow-3);
+    --card-ingredient-margin: 10px;
+    --card-ingredient-image-margin: 5px;
+
+    --card-ingredient-background-color: var(--mlt-sys-colors-light);
+
+    box-sizing: border-box;
+    width: 160pt;
+    max-width: $container-max-width;
+    height: 100%;
+    padding: var(--card-ingredient-padding);
+    background: var(--card-ingredient-background-color);
+    border: $container-border;
+    border-radius: $container-radius;
+    box-shadow: var(--card-ingredient-box-shadow);
+    color: inherit;
+    transition: box-shadow $transition, transform $transition;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    &__img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    &__name {
+        font-family: var(--card-ingredient-font-family-default);
+        font-size: var(--card-ingredient-font-size-big);
+        color: black;
+        font-weight: 600;
+    }
+
+    &__prices {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__price {
+        font-family: var(--card-ingredient-font-family-prices);
+
+        &--final {
+            font-size: var(--card-ingredient-font-size-big);
+            font-weight: 500;
+        }
+
+        &--base {
+            font-size: var(--card-ingredient-font-size-default);
+        }
+
+        &--discount {
+            font-size: var(--card-ingredient-font-size-default);
+        }
+    }
+
+    &__ingredients {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        column-gap: 15px;
+    }
+
+    &__ingredient {
+        font-size: var(--card-ingredient-font-size-default);
+    }
+
+    &__categories {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        column-gap: 15px;
+    }
+
+    &__category {
+        font-size: var(--card-ingredient-font-size-default);
+    }
+}

@@ -50,9 +50,9 @@ export class CEditModal {
     this.attributeOptionsToBeFilled.forEach(attrKey => {
       this.http.getAll("/" + attrKey).subscribe(response => {
         const receivedOptions = (response as Page<any>).data;
-
         const index: number = this.attributes.findIndex(([key, value]) => key === attrKey);
         this.options[attrKey] = receivedOptions.filter((option: any) => !this.attributes[index][1].some((attribute: any) => attribute.id === option.id));
+        this.arrayValueToBeAdded = "-- Añade un elemento --";
       });
     });
   }
@@ -110,7 +110,6 @@ export class CEditModal {
     const optionToBeAdded = this.options[attrKey].find((option: any) => option.name === this.arrayValueToBeAdded);
 
     this.attributes[index][1].push(optionToBeAdded);
-    this.fillOptionArray();
-    this.arrayValueToBeAdded = "";
+    this.fillOptionArray();    
   }
 }

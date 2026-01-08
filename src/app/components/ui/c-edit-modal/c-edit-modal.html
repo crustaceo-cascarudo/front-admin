@@ -24,7 +24,7 @@
                                 }
                             </ul>
                             <select class="form-select" [(ngModel)]="arrayValueToBeAdded" (change)="addSelectedValue(k)">
-                                <option [value]="" disabled selected>-- Añade un elemento --</option>
+                                <option disabled selected>-- Añade un elemento --</option>
                                 @for(option of options[k]; track $index){
                                     <option [value]="option.name">{{option.name}}</option>
                                 }

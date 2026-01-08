@@ -46,14 +46,30 @@ export class CEditModal {
     return this.readonlyFields.includes(key);
   }
 
-  fillOptionArray() {
+  fillOptionArray(pageIndex: number = 1, pageSize: number = 10) {
+    let hasRecursed: boolean = false;
+    let supressedCount: number = 0;
+
+    //TODO: infinite recursion, easy fix problably, got no time now
     this.attributeOptionsToBeFilled.forEach(attrKey => {
-      this.http.getAll("/" + attrKey).subscribe(response => {
+      this.http.getPage("/" + attrKey, pageIndex, pageSize).subscribe(response => {
         const receivedOptions = (response as Page<any>).data;
         const index: number = this.attributes.findIndex(([key, value]) => key === attrKey);
-        this.options[attrKey] = receivedOptions.filter((option: any) => !this.attributes[index][1].some((attribute: any) => attribute.id === option.id));
+        this.options[attrKey] = receivedOptions.filter(
+          (option: any) => !this.attributes[index][1].some((attribute: any) => attribute.id === option.id)
+        );
+
+        supressedCount = pageSize - this.options[attrKey].length;
+        if(supressedCount > 0 && !hasRecursed){
+          hasRecursed = true;
+          this.fillOptionArray(pageIndex, pageSize + supressedCount);
+          console.log(supressedCount);
+          
+        }
+
         this.arrayValueToBeAdded = "-- Añade un elemento --";
       });
+
     });
   }
 

@@ -15,18 +15,11 @@
 }
 
 @each $key, $value in utilidades.$colors {
-    .g--colors-#{$key} {
-        color: var(--mlt-sys-colors-#{$key});
-    }
-    .g--bg-colors-#{$key} {
-        background-color: var(--mlt-sys-colors-#{$key});
-    }
-
-    @for $i from 2 through list.length($value) {
-        .g--colors-#{$key}-#{($i)-1} {
+    @for $i from 1 through list.length($value) {
+        .g--colors-#{$key}-#{($i)} {
             color: var(--mlt-sys-colors-#{$key}-#{$i});
         }
-        .g--bg-colors-#{$key}-#{($i)-1} {
+        .g--bg-colors-#{$key}-#{($i)} {
             background-color: var(--mlt-sys-colors-#{$key}-#{$i});
         }
     }
@@ -35,7 +28,7 @@
 $base-colors: (
     'primary': var(--mlt-sys-colors-blue),
     'secondary': var(--mlt-sys-colors-cyan-3),
-    'success': var(--mlt-sys-colors--green),
+    'success': var(--mlt-sys-colors-green),
     'danger': var(--mlt-sys-colors-red),
     'warning-light': #FFC107,
     'warning-dark': var(--mlt-sys-colors-yellow),

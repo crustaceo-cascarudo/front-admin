@@ -3,8 +3,8 @@
         <div class="w-50">
             <h3 class="card-product__name">{{product.name}}</h3>
             <div class="card-product__prices">
-                <span class="card-product__price--base">Precio: <br/> {{product.basePrice | currency}}</span>
-                <span class="card-product__price--discount">Descuento: <br/> {{(product.discountPercentage/100) |
+                <span class="card-product__price card-product__price--base">Precio: <br/> {{product.basePrice | currency}}</span>
+                <span class="card-product__price card-product__price--discount">Descuento: <br/> {{(product.discountPercentage/100) |
                     percent}}</span>
             </div>
         </div>
@@ -13,7 +13,7 @@
         </div> 
     </div>
     
-    <span class="card-product__price--final">Precio Final: {{product.finalPrice | currency}}</span>
+    <span class="card-product__price card-product__price--final">Precio Final: {{product.finalPrice | currency}}</span>
     
 
     <div class="my-2">

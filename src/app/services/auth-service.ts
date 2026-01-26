@@ -8,7 +8,7 @@ import { tap } from 'rxjs/operators';
 })
 export class AuthService {
   private readonly TOKEN_KEY = 'token';
-  private readonly baseUrl = 'store-back-crustaceo-cascarudo.preproducciondaw.cip.fpmislata.com/api';
+  private readonly baseUrl = 'http://store-back-crustaceo-cascarudo.preproducciondaw.cip.fpmislata.com/api';
   private httpClient = inject(HttpClient);
 
   getToken(): string | null {

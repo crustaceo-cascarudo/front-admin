@@ -10,14 +10,17 @@ import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UserRegister } from '../../../models/user/user-register';
 import { FormsModule } from '@angular/forms';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { Page } from '../../../models/page';
 
 @Component({
   selector: 'p-user',
-  imports: [FormsModule],
+  imports: [FormsModule, MatPaginatorModule],
   templateUrl: './p-user.html',
   styleUrl: './p-user.scss',
 })
 export class PUser {
+  pageContent!: Page<User>;
   users: User[] = [];
   filteredUsers: User[] = [];
   selectedRole: string = 'TODOS';
@@ -36,11 +39,12 @@ export class PUser {
     this.subscription.unsubscribe();
   }
 
-  getData() {
+  getData(pageIndex: number = 1, pageSize: number = 10) {
     this.subscription.add(
-      this.service.getAllArray<User>(this.url).subscribe({
-        next: (users) => {
-          this.users = users;
+      this.service.getPage<User>(this.url, pageIndex, pageSize).subscribe({
+        next: (page) => {
+          this.pageContent = page as unknown as Page<User>;
+          this.users = this.pageContent?.data;
           this.filterUsers();
           console.log('Usuarios cargados:', this.users);
         },
@@ -129,4 +133,7 @@ export class PUser {
     overlayRef.backdropClick().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => overlayRef.detach());
   }
 
+  handlePageEvent(event: PageEvent) {
+    this.getData(event.pageIndex + 1, event.pageSize);
+  }
 }

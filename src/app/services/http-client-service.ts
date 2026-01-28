@@ -25,15 +25,6 @@ export class HttpClientService {
     return this.httpClient.get<Page<T>>(`${this.baseUrl + url}?page=${pageIndex}&size=${pageSize}`);
   }
 
-  getAll<T>(url: string): Observable<Page<T>> {
-    return this.httpClient.get<Page<T>>(`${this.baseUrl + url}`);
-  }
-
-  // Metdo temporal para obtener los usuarios
-  getAllArray<T>(url: string): Observable<T[]> {
-    return this.httpClient.get<T[]>(`${this.baseUrl + url}`);
-  }
-
   getById<T>(url: string, id: number): Observable<T> {
     return this.httpClient.get<T>(`${this.baseUrl}${url}/${id}`);
   }

@@ -8,14 +8,17 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CEditModal } from '../../ui/c-edit-modal/c-edit-modal';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { Page } from '../../../models/page';
 
 @Component({
   selector: 'p-category-getAll',
-  imports: [],
+  imports: [MatPaginatorModule],
   templateUrl: './p-category.html',
   styleUrl: './p-category.scss',
 })
 export class PCategory {
+  pageContent!: Page<Category>;
   categories: Category[] = [];
   url: string = "/categories";
   service = inject(HttpClientService);
@@ -30,10 +33,11 @@ export class PCategory {
     this.subscription.unsubscribe();
   }
 
-  getData() {
-    this.service.getAll<Category>(this.url).subscribe({
+  getData(pageIndex: number = 1, pageSize: number = 10) {
+    this.service.getPage<Category>(this.url, pageIndex, pageSize).subscribe({
       next: (page) => {
-        this.categories = page.data;
+        this.pageContent = page as unknown as Page<Category>;
+        this.categories = this.pageContent?.data;
       },
       error: (error) => console.log('ERROR ' + error.status),
     })
@@ -119,4 +123,7 @@ export class PCategory {
     overlayRef.backdropClick().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => overlayRef.detach());
   }
 
+  handlePageEvent(event: PageEvent) {
+    this.getData(event.pageIndex + 1, event.pageSize);
+  }
 }

@@ -39,7 +39,7 @@
                             <p class="" type="text" id='{{attributes.at($index)}}'>
                                 {{attributes.at(keys.indexOf("basePrice")).at(1) -
                                 attributes.at(keys.indexOf("basePrice")).at(1) *
-                                attributes.at(keys.indexOf("discountPercentage")).at(1) / 100 | number: '1.2-2'}}</p>
+                                attributes.at(keys.indexOf("discountPercentage")).at(1) / 100 | currency: 'EUR'}}</p>
                         </div>
                     }@else{
                         @if(checkIfBoolean(attributes.at($index).at(1))) {
@@ -53,7 +53,14 @@
                         }@else{
                             <div class="mb-4">
                                 <label class="form-label"><strong>{{k}}:</strong></label>
-                                <input class="form-control" [(ngModel)]="attributes[$index][1]" type="text">
+                                @if( k == "basePrice"){
+                                    <input #basePrice="ngModel" type="number" [min]="0" class="form-control" [(ngModel)]="attributes[$index][1]">
+                                    @if(basePrice.invalid){
+                                        <div class="text-danger mt-1">El numero no puede ser negativo</div>
+                                    }
+                                }@else {
+                                    <input type="text" class="form-control" [(ngModel)]="attributes[$index][1]">
+                                }
                             </div>
                         }
                     }
@@ -64,7 +71,6 @@
         <div class="d-flex flex-row gap-2 justify-content-end mt-4">
             <button class="btn bg-warning" (click)="upload()">Enviar</button>
             <button class="btn bg-danger" (click)="delete()">Eliminar</button>
-         </div>
-        
+        </div>
     </div>
 </div>

@@ -23,7 +23,7 @@ export class CEditModal {
   @Output() saved = new EventEmitter<void>();
   keys!: string[];
   attributes!: any[];
-  //Options all the values used to fill select inputs, and is filtered later by attrKey
+  //Options stores all the values used to fill selects, and is filtered later by attrKey
   options: Record<string, any[]> = {};
 
   arrayValueToBeAdded: string = "";

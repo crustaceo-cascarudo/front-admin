@@ -1,11 +1,11 @@
 <div class="card-ingredient g--bg-colors-light" style=" cursor: pointer;" (click)="openModal()">
     <div class="card-body d-flex flex-column justify-content-around align-items-center gap-3">
         <div class="h-50 rounded-4 overflow-hidden d-flex align-items-center justify-content-center" style="max-height: 120px;">
-            <img class="card-ingredient__img" src="{{ingredient.image}}">  
+            <img class="card-ingredient__img" src="{{ingredient.image}}">
         </div>
         <div class="h-50">
             <h3 class="g--font-size-3 fw-medium">{{ingredient.name}}</h3>
-            <p class="g--font-size-3">Precio: {{ingredient.price | currency}}</p>
+            <p class="g--font-size-3">Precio: {{ingredient.basePrice | currency}}</p>
         </div>
     </div>
 </div>

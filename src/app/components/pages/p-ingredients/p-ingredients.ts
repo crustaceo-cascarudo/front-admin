@@ -72,7 +72,7 @@ export class PIngredients {
     const componentRef = overlayRef.attach(this.portal);
     const newProduct: IngredientInsert = {
       name: '',
-      price: 0,
+      basePrice: 0,
       image: '',
     };
 

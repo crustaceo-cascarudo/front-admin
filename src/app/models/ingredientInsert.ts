@@ -1,5 +1,5 @@
 export interface IngredientInsert {
     name: string,
-    price: number,
+    basePrice: number,
     image: string
 }

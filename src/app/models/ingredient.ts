@@ -1,6 +1,6 @@
 export interface Ingredient{
     id: number,
     name: string,
-    price: number,
+    basePrice: number,
     image: string
 }

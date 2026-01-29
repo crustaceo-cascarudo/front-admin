@@ -11,8 +11,8 @@ export class LoginService {
   authService = inject(AuthService);
   url = 'http://store-back-crustaceo-cascarudo.preproducciondaw.cip.fpmislata.com/api/users/login';
 
-  logIn(name: string, plainPassword: string) {
-    this.http.post<LoginResponse>(this.url, { name, plainPassword }).subscribe({
+  logIn(email: string, plainPassword: string) {
+    this.http.post<LoginResponse>(this.url, { email, plainPassword }).subscribe({
       next: (datos) => {
         console.log(datos);
 

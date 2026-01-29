@@ -11,7 +11,7 @@ import { Category } from '../models/category/category';
   providedIn: 'root',
 })
 export class HttpClientService {
-  private baseUrl = "http://store-back-crustaceo-cascarudo.preproducciondaw.cip.fpmislata.com//api";
+  private baseUrl = "http://store-back-crustaceo-cascarudo.preproducciondaw.cip.fpmislata.com/api";
 
   private categoriesSubject = new BehaviorSubject<Category[]>([]);
   categories$ = this.categoriesSubject.asObservable();

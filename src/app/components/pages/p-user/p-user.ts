@@ -8,10 +8,10 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { CEditModal } from '../../ui/c-edit-modal/c-edit-modal';
 import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { UserRegister } from '../../../models/user/user-register';
 import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Page } from '../../../models/page';
+import { UserRegister } from '../../../models/user/user-register';
 
 @Component({
   selector: 'p-user',
@@ -85,6 +85,7 @@ export class PUser {
 
     const newUser: UserRegister = {
       name: '',
+      email: '',
       password: '',
       role: userRole.ADMIN
     };

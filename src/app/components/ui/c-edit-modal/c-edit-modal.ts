@@ -23,7 +23,7 @@ export class CEditModal {
   @Output() saved = new EventEmitter<void>();
   keys!: string[];
   attributes!: any[];
-  //Options all the values used to fill select inputs, and is filtered later by attrKey
+  //Options stores all the values used to fill selects, and is filtered later by attrKey
   options: Record<string, any[]> = {};
 
   arrayValueToBeAdded: string = "";
@@ -31,7 +31,9 @@ export class CEditModal {
   ngOnInit() {
     this.keys = Object.keys(JSON.parse(JSON.stringify(this.object!)));
     this.attributes = Object.entries(JSON.parse(JSON.stringify(this.object!)));
-    this.fillOptionArray();
+    this.attributeOptionsToBeFilled.forEach(attrKey => {
+      this.fillOptionArray(attrKey);
+    });
   }
 
   checkIfArray(obj: any): boolean {
@@ -46,15 +48,34 @@ export class CEditModal {
     return this.readonlyFields.includes(key);
   }
 
-  fillOptionArray() {
-    this.attributeOptionsToBeFilled.forEach(attrKey => {
-      this.http.getAll("/" + attrKey).subscribe(response => {
-        const receivedOptions = (response as Page<any>).data;
+  fillOptionArray(attrKey: string, pageIndex: number = 1, pageSize: number = 1, hasToRecurse: boolean = true) {
+    let supressedCount: number = 0;
 
+    this.http.getPage("/" + attrKey, pageIndex, pageSize)
+      .subscribe(response => {
+        const receivedOptions = (response as Page<any>).data;
         const index: number = this.attributes.findIndex(([key, value]) => key === attrKey);
-        this.options[attrKey] = receivedOptions.filter((option: any) => !this.attributes[index][1].some((attribute: any) => attribute.id === option.id));
+        this.options[attrKey] = receivedOptions.filter(
+          (option: any) => !this.attributes[index][1].some((attribute: any) => attribute.id === option.id)
+        );
+
+        console.log("Has to recurse?: " + hasToRecurse);
+
+
+        supressedCount = pageSize - this.options[attrKey].length;
+        console.log(attrKey + " " + response.totalElements);
+        console.log(this.options[attrKey].length);
+        console.log("Supressed: " + supressedCount);
+        console.log("------------");
+
+        if (hasToRecurse === true) {
+          console.log("Recursion here");
+
+          this.fillOptionArray(attrKey, pageIndex, response.totalElements, false);
+        }
+
+        this.arrayValueToBeAdded = "-- Añade un elemento --";
       });
-    });
   }
 
   upload() {
@@ -102,7 +123,7 @@ export class CEditModal {
   removeSelectedValue(attrKey: string, optionToBeRemoved: any) {
     const index: number = this.attributes.findIndex(([key, value]) => key === attrKey);
     this.attributes[index][1] = this.attributes[index][1].filter((option: any) => option.id !== optionToBeRemoved.id);
-    this.fillOptionArray();
+    this.fillOptionArray(attrKey);
   }
 
   addSelectedValue(attrKey: string) {
@@ -110,7 +131,6 @@ export class CEditModal {
     const optionToBeAdded = this.options[attrKey].find((option: any) => option.name === this.arrayValueToBeAdded);
 
     this.attributes[index][1].push(optionToBeAdded);
-    this.fillOptionArray();
-    this.arrayValueToBeAdded = "";
+    this.fillOptionArray(attrKey);
   }
 }

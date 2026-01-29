@@ -9,7 +9,14 @@ import { AuthService } from './auth-service';
 export class LoginService {
   http = inject(HttpClient);
   authService = inject(AuthService);
-  url = 'http://store-back-crustaceo-cascarudo.preproducciondaw.cip.fpmislata.com/api/users/login';
+  httpClient = inject(HttpClient);
+  private url!: string;
+
+  constructor() {
+    this.httpClient.get('assets/config.json').subscribe((config: any) => {
+      this.url = config.apiUrl;
+    });
+  }
 
   logIn(email: string, plainPassword: string) {
     this.http.post<LoginResponse>(this.url, { email, plainPassword }).subscribe({

@@ -11,7 +11,7 @@ import { Category } from '../models/category/category';
   providedIn: 'root',
 })
 export class HttpClientService {
-  private baseUrl = "https://api-store-class.ishimi.es/api/";
+  private baseUrl = "https://api-store-class.ishimi.es/api";
 
   private categoriesSubject = new BehaviorSubject<Category[]>([]);
   categories$ = this.categoriesSubject.asObservable();

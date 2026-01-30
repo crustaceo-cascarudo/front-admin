@@ -11,18 +11,12 @@ import { Category } from '../models/category/category';
   providedIn: 'root',
 })
 export class HttpClientService {
-  private baseUrl!: string
+  private baseUrl = "https://api-store-class.ishimi.es/api/";
 
   private categoriesSubject = new BehaviorSubject<Category[]>([]);
   categories$ = this.categoriesSubject.asObservable();
 
   httpClient = inject(HttpClient);
-
-  constructor() {
-    this.httpClient.get('assets/config.json').subscribe((config: any) => {
-      this.baseUrl = config.apiUrl;
-    });
-  }
 
   // TODO: Convert all uses of getAll to getPage
   getPage<T>(url: string, pageIndex: number, pageSize: number): Observable<Page<T>> {

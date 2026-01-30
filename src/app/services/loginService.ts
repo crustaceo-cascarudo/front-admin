@@ -11,9 +11,10 @@ export class LoginService {
   authService = inject(AuthService);
   httpClient = inject(HttpClient);
   private url = "https://api-store-class.ishimi.es/api/users/";
+  private loginurl = this.url + "login";
 
   logIn(email: string, plainPassword: string) {
-    this.http.post<LoginResponse>(this.url, { email, plainPassword }).subscribe({
+    this.http.post<LoginResponse>(this.loginurl, { email, plainPassword }).subscribe({
       next: (datos) => {
         console.log(datos);
 
